@@ -1,0 +1,6 @@
+cd /home/vochealth/CUBE-X/CubexLatest/CubexApp_V1.6_MVP
+
+source venv/bin/activate
+
+python app.py
+

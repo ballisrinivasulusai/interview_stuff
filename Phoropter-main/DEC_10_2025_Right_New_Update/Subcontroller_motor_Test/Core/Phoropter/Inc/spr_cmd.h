@@ -1,0 +1,372 @@
+/*
+ * cmdlist.h
+ *
+ *  Created on:
+ *      Author:
+ */
+
+#ifndef SPR_CMDLIST_H_
+#define SPR_CMDLIST_H_
+
+void spr_SubFun1();
+void spr_SubFun2();
+void spr_SubFun3();
+void spr_SubFun4();
+void spr_SubFun5();
+void spr_SubFun6();
+void spr_SubFun7();
+void spr_SubFun8();
+void spr_SubFun9();
+void spr_SubFun10();
+void spr_SubFun11();
+void spr_SubFun12();
+void spr_SubFun13();
+void spr_SubFun14();
+void spr_SubFun15();
+void spr_SubFun16();
+void spr_SubFun17();
+void spr_SubFun18();
+void spr_SubFun19();
+void spr_SubFun20();
+void spr_SubFun21();
+void spr_SubFun22();
+void spr_SubFun23();
+void spr_SubFun24();
+void spr_SubFun25();
+void spr_SubFun26();
+void spr_SubFun27();
+void spr_SubFun28();
+void spr_SubFun29();
+void spr_SubFun30();
+void spr_SubFun31();
+void spr_SubFun32();
+void spr_SubFun33();
+void spr_SubFun34();
+void spr_SubFun35();
+void spr_SubFun36();
+void spr_SubFun37();
+void spr_SubFun38();
+void spr_SubFun39();
+void spr_SubFun40();
+void spr_SubFun41();
+void spr_SubFun42();
+void spr_SubFun43();
+void spr_SubFun44();
+void spr_SubFun45();
+void spr_SubFun46();
+void spr_SubFun47();
+void spr_SubFun48();
+void spr_SubFun49();
+void spr_SubFun50();
+void spr_SubFun51();
+void spr_SubFun52();
+void spr_SubFun53();
+void spr_SubFun54();
+void spr_SubFun55();
+void spr_SubFun56();
+void spr_SubFun57();
+void spr_SubFun58();
+void spr_SubFun59();
+void spr_SubFun60();
+void spr_SubFun61();
+void spr_SubFun62();
+void spr_SubFun63();
+void spr_SubFun64();
+void spr_SubFun65();
+void spr_SubFun66();
+void spr_SubFun67();
+void spr_SubFun68();
+void spr_SubFun69();
+void spr_SubFun70();
+void spr_SubFun71();
+void spr_SubFun72();
+void spr_SubFun73();
+void spr_SubFun74();
+void spr_SubFun75();
+void spr_SubFun76();
+void spr_SubFun77();
+void spr_SubFun78();
+void spr_SubFun79();
+void spr_SubFun80();
+void spr_SubFun81();
+void spr_SubFun82();
+void spr_SubFun83();
+void spr_SubFun84();
+void spr_SubFun85();
+void spr_SubFun86();
+void spr_SubFun87();
+void spr_SubFun88();
+void spr_SubFun89();
+void spr_SubFun90();  // zero degree
+void spr_SubFun91();
+void spr_SubFun92();
+void spr_SubFun93();
+void spr_SubFun94();
+void spr_SubFun95();
+void spr_SubFun96();
+void spr_SubFun97();
+void spr_SubFun98();
+void spr_SubFun99();
+void spr_SubFun100();
+void spr_SubFun101();
+void spr_SubFun102();
+void spr_SubFun103();
+void spr_SubFun104();
+void spr_SubFun105();
+void spr_SubFun106();
+void spr_SubFun107();
+void spr_SubFun108();
+void spr_SubFun109();
+void spr_SubFun110();
+void spr_SubFun111();
+void spr_SubFun112();
+void spr_SubFun113();
+void spr_SubFun114();
+void spr_SubFun115();
+void spr_SubFun116();
+void spr_SubFun117();
+void spr_SubFun118();
+void spr_SubFun119();
+void spr_SubFun120();
+void spr_SubFun121();
+void spr_SubFun122();
+void spr_SubFun123();
+void spr_SubFun124();
+void spr_SubFun125();
+void spr_SubFun126();
+void spr_SubFun127();
+void spr_SubFun128();
+void spr_SubFun129();
+void spr_SubFun130();
+void spr_SubFun131();
+void spr_SubFun132();
+void spr_SubFun133();
+void spr_SubFun134();
+void spr_SubFun135();
+void spr_SubFun136();
+void spr_SubFun137();
+void spr_SubFun138();
+void spr_SubFun139();
+void spr_SubFun140();
+void spr_SubFun141();
+void spr_SubFun142();
+void spr_SubFun143();
+void spr_SubFun144();
+void spr_SubFun145();
+void spr_SubFun146();
+void spr_SubFun147();
+void spr_SubFun148();
+void spr_SubFun149();
+void spr_SubFun150();
+void spr_SubFun151();
+void spr_SubFun152();
+void spr_SubFun153();
+void spr_SubFun154();
+void spr_SubFun155();
+void spr_SubFun156();
+void spr_SubFun157();
+void spr_SubFun158();
+void spr_SubFun159();
+void spr_SubFun160();
+void spr_SubFun161();
+void spr_SubFun162();
+void spr_SubFun163();
+void spr_SubFun164();
+void spr_SubFun165();
+void spr_SubFun166();
+void spr_SubFun167();
+
+
+#define DISC_1     1
+#define DISC_2     2
+#define DISC_3     3
+#define DISC_4     4
+#define DISC_5     5
+#define DISC_6     6
+#define DISC_ALL   7
+
+
+
+
+/*!
+ * Command Menu list
+ */
+submenulist spr_func[] =
+{
+	{NULL, NULL},
+    {spr_SubFun1, NULL},
+	{spr_SubFun2, NULL},
+	{spr_SubFun3, NULL},
+	{spr_SubFun4, NULL},
+	{spr_SubFun5, NULL},
+	{spr_SubFun6, NULL},
+	{spr_SubFun7, NULL},
+	{spr_SubFun8, NULL},
+	{spr_SubFun9, NULL},
+	{spr_SubFun10, NULL},
+	{spr_SubFun11, NULL},
+	{spr_SubFun12, NULL},
+	{spr_SubFun13, NULL},
+	{spr_SubFun14, NULL},
+	{spr_SubFun15, NULL},
+	{spr_SubFun16, NULL},
+	{spr_SubFun17, NULL},
+	{spr_SubFun18, NULL},
+	{spr_SubFun19, NULL},
+	{spr_SubFun20, NULL},
+	{spr_SubFun21, NULL},
+	{spr_SubFun22, NULL},
+	{spr_SubFun23, NULL},
+	{spr_SubFun24, NULL},
+	{spr_SubFun25, NULL},
+	{spr_SubFun26, NULL},
+	{spr_SubFun27, NULL},
+	{spr_SubFun28, NULL},
+	{spr_SubFun29, NULL},
+	{spr_SubFun30, NULL},
+	{spr_SubFun31, NULL},
+	{spr_SubFun32, NULL},
+	{spr_SubFun33, NULL},
+	{spr_SubFun34, NULL},
+	{spr_SubFun35, NULL},
+	{spr_SubFun36, NULL},
+	{spr_SubFun37, NULL},
+	{spr_SubFun38, NULL},
+	{spr_SubFun39, NULL},
+	{spr_SubFun40, NULL},
+	{spr_SubFun41, NULL},
+	{spr_SubFun42, NULL},
+	{spr_SubFun43, NULL},
+	{spr_SubFun44, NULL},
+	{spr_SubFun45, NULL},
+	{spr_SubFun46, NULL},
+	{spr_SubFun47, NULL},
+	{spr_SubFun48, NULL},
+	{spr_SubFun49, NULL},
+	{spr_SubFun50, NULL},
+	{spr_SubFun51, NULL},
+	{spr_SubFun52, NULL},
+	{spr_SubFun53, NULL},
+	{spr_SubFun54, NULL},
+	{spr_SubFun55, NULL},
+	{spr_SubFun56, NULL},
+	{spr_SubFun57, NULL},
+	{spr_SubFun58, NULL},
+	{spr_SubFun59, NULL},
+	{spr_SubFun60, NULL},
+	{spr_SubFun61, NULL},
+	{spr_SubFun62, NULL},
+	{spr_SubFun63, NULL},
+	{spr_SubFun64, NULL},
+	{spr_SubFun65, NULL},
+	{spr_SubFun66, NULL},
+	{spr_SubFun67, NULL},
+	{spr_SubFun68, NULL},
+	{spr_SubFun69, NULL},
+	{spr_SubFun70, NULL},
+	{spr_SubFun71, NULL},
+	{spr_SubFun72, NULL},
+	{spr_SubFun73, NULL},
+	{spr_SubFun74, NULL},
+	{spr_SubFun75, NULL},
+	{spr_SubFun76, NULL},
+	{spr_SubFun77, NULL},
+	{spr_SubFun78, NULL},
+	{spr_SubFun79, NULL},
+	{spr_SubFun80, NULL},
+	{spr_SubFun81, NULL},
+	{spr_SubFun82, NULL},
+	{spr_SubFun83, NULL},
+	{spr_SubFun84, NULL},
+	{spr_SubFun85, NULL},
+	{spr_SubFun86, NULL},
+	{spr_SubFun87, NULL},
+	{spr_SubFun88, NULL},
+	{spr_SubFun89, NULL},
+	{spr_SubFun90, NULL},
+	{spr_SubFun91, NULL},
+	{spr_SubFun92, NULL},
+	{spr_SubFun93, NULL},
+	{spr_SubFun94, NULL},
+	{spr_SubFun95, NULL},
+	{spr_SubFun96, NULL},
+	{spr_SubFun97, NULL},
+	{spr_SubFun98, NULL},
+	{spr_SubFun99, NULL},
+	{spr_SubFun100, NULL},
+	{spr_SubFun101, NULL},
+	{spr_SubFun102, NULL},
+	{spr_SubFun103, NULL},
+	{spr_SubFun104, NULL},
+	{spr_SubFun105, NULL},
+	{spr_SubFun106, NULL},
+	{spr_SubFun107, NULL},
+	{spr_SubFun108, NULL},
+	{spr_SubFun109, NULL},
+	{spr_SubFun110, NULL},
+	{spr_SubFun111, NULL},
+	{spr_SubFun112, NULL},
+	{spr_SubFun113, NULL},
+	{spr_SubFun114, NULL},
+	{spr_SubFun115, NULL},
+	{spr_SubFun116, NULL},
+	{spr_SubFun117, NULL},
+	{spr_SubFun118, NULL},
+	{spr_SubFun119, NULL},
+	{spr_SubFun120, NULL},
+	{spr_SubFun121, NULL},
+	{spr_SubFun122, NULL},
+	{spr_SubFun123, NULL},
+    {spr_SubFun124, NULL},
+ 	{spr_SubFun125, NULL},
+	{spr_SubFun126, NULL},
+	{spr_SubFun127, NULL},
+	{spr_SubFun128, NULL},
+	{spr_SubFun129, NULL},
+	{spr_SubFun130, NULL},
+	{spr_SubFun131, NULL},
+	{spr_SubFun132, NULL},
+	{spr_SubFun133, NULL},
+	{spr_SubFun134, NULL},
+	{spr_SubFun135, NULL},
+	{spr_SubFun136, NULL},
+	{spr_SubFun137, NULL},
+	{spr_SubFun138, NULL},
+	{spr_SubFun139, NULL},
+	{spr_SubFun140, NULL},
+	{spr_SubFun141, NULL},
+	{spr_SubFun142, NULL},
+	{spr_SubFun143, NULL},
+	{spr_SubFun144, NULL},
+	{spr_SubFun145, NULL},
+	{spr_SubFun146, NULL},
+	{spr_SubFun147, NULL},
+	{spr_SubFun148, NULL},
+	{spr_SubFun149, NULL},
+	{spr_SubFun150, NULL},
+  	{spr_SubFun151, NULL},
+	{spr_SubFun152, NULL},
+	{spr_SubFun153, NULL},
+	{spr_SubFun154, NULL},
+	{spr_SubFun155, NULL},
+	{spr_SubFun156, NULL},
+	{spr_SubFun157, NULL},
+	{spr_SubFun158, NULL},
+	{spr_SubFun159, NULL},
+	{spr_SubFun160, NULL},
+	{spr_SubFun161, NULL},
+	{spr_SubFun162, NULL},
+	{spr_SubFun163, NULL},
+	{spr_SubFun164, NULL},
+	{spr_SubFun165, NULL},
+	{spr_SubFun166, NULL},
+	{spr_SubFun167, NULL},
+
+
+};
+
+
+
+#endif /* SPR_CMDLIST_H_ */
+
+

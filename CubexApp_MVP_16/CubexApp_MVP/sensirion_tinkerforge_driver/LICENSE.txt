@@ -1,0 +1,6 @@
+# (C) Copyright 2024-2025 Advanced Instrumentation Systems, LLC, All Rights Reserved
+# Original code from Sensation modified for use with Tinkerforge RS485 bricklet.
+# Together with this license file the pyserial license file must be kept with the source code, as well as the Tinkerforge CCE 1.0 License.
+# Files modified:
+# port.py
+# serial_frame_builder.py

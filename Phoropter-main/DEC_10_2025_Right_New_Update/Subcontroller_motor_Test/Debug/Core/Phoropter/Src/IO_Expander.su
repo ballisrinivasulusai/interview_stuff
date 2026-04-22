@@ -1,0 +1,3 @@
+../Core/Phoropter/Src/IO_Expander.c:11:19:pca9535_read	40	static
+../Core/Phoropter/Src/IO_Expander.c:27:19:pca9535_write	40	static
+../Core/Phoropter/Src/IO_Expander.c:47:8:Init_IOExpander	24	static

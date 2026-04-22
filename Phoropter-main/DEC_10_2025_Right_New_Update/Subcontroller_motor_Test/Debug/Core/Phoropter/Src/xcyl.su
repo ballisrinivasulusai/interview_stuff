@@ -1,0 +1,14 @@
+../Core/Phoropter/Src/xcyl.c:23:9:xcyl_cmd	16	static
+../Core/Phoropter/Src/xcyl.c:57:6:xcyl_SubFun1	8	static
+../Core/Phoropter/Src/xcyl.c:83:6:xcyl_SubFun2	8	static
+../Core/Phoropter/Src/xcyl.c:105:6:xcyl_SubFun3	8	static
+../Core/Phoropter/Src/xcyl.c:127:6:xcyl_SubFun4	8	static
+../Core/Phoropter/Src/xcyl.c:149:6:xcyl_SubFun5	8	static
+../Core/Phoropter/Src/xcyl.c:168:6:xcyl_SubFun6	8	static
+../Core/Phoropter/Src/xcyl.c:187:6:xcyl_SubFun7	8	static
+../Core/Phoropter/Src/xcyl.c:207:6:xcyl_SubFun8	8	static
+../Core/Phoropter/Src/xcyl.c:227:6:xcyl_SubFun9	8	static
+../Core/Phoropter/Src/xcyl.c:245:6:xcyl_SubFun10	8	static
+../Core/Phoropter/Src/xcyl.c:263:6:xcyl_SubFun11	8	static
+../Core/Phoropter/Src/xcyl.c:283:6:xcyl_SubFun12	8	static
+../Core/Phoropter/Src/xcyl.c:303:6:xcyl_SubFun13	8	static

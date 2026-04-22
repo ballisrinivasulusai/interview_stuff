@@ -1,0 +1,7 @@
+# (C) Copyright 2024-2025 Advanced Instrumentation Systems, LLC, All Rights Reserved
+# Licensed to VOC Health for Health Care applications.
+#
+# Code partly derived from pyserial subject to Chris Liechti license (PYSERIAL LICENSE.txt),
+# and the Tinkerforge CC# 1.0 License (Tinkerforge License.txt)
+# Both copyrights are included in this folder and retained when making copies.
+

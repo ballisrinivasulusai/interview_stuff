@@ -1,0 +1,224 @@
+(STM)         2026.04.11-04:52:43.309 <INFO>   [SM_Init_State : 584] *******************************
+(STM)         2026.04.11-04:52:43.309 <INFO>   [SM_Init_State : 585] * JUNE 19 VOC - SYSTEM REBOOT *
+(STM)         2026.04.11-04:52:43.310 <INFO>   [SM_Init_State : 586] *******************************
+(STM)         2026.04.11-04:52:43.310 <INFO>   [SM_Init_State : 587] SkipSensorSamples: 49
+
+(STM)         2026.04.11-04:52:43.310 <INFO>   [SM_Init_State : 588] DisableErrorEEPROM: 1
+
+(STM)         2026.04.11-04:52:43.310 <INFO>   [SM_Init_State : 606] Enter : INIT
+(TESTAPP)     2026.04.11-04:52:43.333 <INFO>   [killProcessByName : 797] Kill Line :   333 root      3520 S    sh -c ps | grep server.py
+ 
+
+(TESTAPP)     2026.04.11-04:52:43.334 <INFO>   [killProcessByName : 799] PID Line : 333 
+
+(TESTAPP)     2026.04.11-04:52:43.335 <INFO>   [killProcessByName : 810] Failed to kill process            with name 'server.py'.
+
+(THRIFT_COMM)     2026.04.11-04:52:43.336 <INFO>   [THRIFT_Thread : 552] Thrift Communication Thread Started Ver = 1.0.5 
+
+(THRIFT_COMM)     2026.04.11-04:52:43.354 <INFO>   [THRIFT_Thread : 594] Wait for receiving            the Thrift python connection 
+
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[0] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[1] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[2] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[3] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[4] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[5] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[6] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[7] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 879] SensorEEPROM[1] Param[9] Configured
+(EEPROM)      2026.04.11-04:52:47.392 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[0] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[1] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[2] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[3] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[4] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[5] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[6] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[7] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 879] SensorEEPROM[2] Param[9] Configured
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 858] SKIPPED the EEPROM READ
+(EEPROM)      2026.04.11-04:52:47.393 <INFO>   [EEP_Init : 909] Sensor EEPROM Valid Config
+(STM)         2026.04.11-04:52:47.394 <INFO>   [SM_Init_State : 625] EEP_Init SUCCESS
+(STM)         2026.04.11-04:52:47.394 <INFO>   [SM_Init_State : 640] Graceful Shutdown Not Done
+(STM)         2026.04.11-04:52:47.396 <INFO>   [SM_Init_State : 653] Sucessfully set Ethernet MAC
+(STM)         2026.04.11-04:52:47.396 <INFO>   [SM_Init_State : 660] Disabled lowlevel audio/led init functions
+(FAN)         2026.04.11-04:52:47.396 <INFO>   [FAN_Init : 244] FAN_Init
+(STM)         2026.04.11-04:52:47.396 <INFO>   [SM_Init_State : 695] FAN_Init SUCCESS
+(FPGA_COMM)   2026.04.11-04:52:47.399 <INFO>   [FPGA_ReadDacValuesFromEEP : 259] DAC Params - dwell_time: [50ms], DStep: [0.005000V 0x1b], GStep: [0.100000V 0x222] dac1TargetXcode[0]: 0x0, dac2TargetXcode[0]: 0x0
+(FPGA_COMM)   2026.04.11-04:52:47.400 <INFO>   [FPGA_CommInit : 423] FPGA Read OFS, grpOFScode[1]: 0x21555, grpOFScode[2]: 0x31555
+(FPGA_COMM)   2026.04.11-04:52:47.400 <INFO>   [FPGA_CommInit : 425] FPGA CommInit Success
+(FPGA_COMM)   2026.04.11-04:52:47.400 <INFO>   [SM_Init_State : 707] FPGAComm_Init SUCCESS
+(STM)         2026.04.11-04:52:50.595 <INFO>   [algoInit : 1685] *** Start sklearn install ***
+(STM)         2026.04.11-04:52:50.599 <INFO>   [algoInit : 1704] Algo Init success
+(TESTAPP)     2026.04.11-04:52:50.600 <INFO>   [TESTAPP_Init : 2215] *** gTestModeEnable: 0 ***
+(STM)         2026.04.11-04:52:50.600 <INFO>   [SM_Init_State : 723] TESTAPP_Init SUCCESS
+(STM)         2026.04.11-04:52:50.600 <INFO>   [SM_Init_State : 735] MAINAPPL_Init SUCCESS
+(EEPROM)      2026.04.11-04:52:50.609 <INFO>   [EEP_WriteSB : 726] Skipping EEPROM Write
+(EEPROM)      2026.04.11-04:52:50.610 <INFO>   [EEP_WriteSB : 726] Skipping EEPROM Write
+(STM)         2026.04.11-04:52:50.610 <INFO>   [SM_Init_State : 759] MEAS_Init SUCCESS
+(USB)    2026.04.11-04:52:50.610 <INFO>   [USB_Init : 112] USB device Task Thread created
+
+(USB)    2026.04.11-04:52:50.611 <INFO>   [SM_Init_State : 770] USB_Init SUCCESS
+(BLUETOOTH)    2026.04.11-04:52:50.611 <INFO>   [BarcodeScanner_Init : 124] BarcodeScanner_Init
+(USB)    2026.04.11-04:52:50.611 <INFO>   [USB_Threadhandler : 151] USB device Detect 
+
+(USB)    2026.04.11-04:52:50.611 <INFO>   [USB_Threadhandler : 161] USB device Task Thread created
+
+(USB)    2026.04.11-04:52:50.611 <INFO>   [USB_Threadhandler : 163] USB event remove
+
+(STM)         2026.04.11-04:52:51.280 <ERROR>  [SM_Init_State : 776] BarcodeScanner_Init FAIL
+(FOTA)        2026.04.11-04:52:51.281 <INFO>   [OTA_FW_Init : 845] FOTA_Init
+(QSPI)        2026.04.11-04:52:51.281 <INFO>   [QSPI_Init : 403] QSPI-Memory Size:33554432, Memory Erase Size:65536
+(FOTA)        2026.04.11-04:52:51.281 <INFO>   [OTA_FW_Init : 889] FOTA Update Thread Creation Successfull
+(FOTA)        2026.04.11-04:52:51.281 <INFO>   [OTA_FetchFwVersion : 209] FIRMWARE VERSION:2024.09.051.008.051
+(FOTA)        2026.04.11-04:52:51.281 <INFO>   [OTA_FetchEEPVar : 276] FOTA OTA Status from EEPROM:0
+(FOTA)        2026.04.11-04:52:51.281 <INFO>   [OTA_FetchEEPVar : 288] FOTA Cloud OTA Status from EEPROM:0
+(STM)         2026.04.11-04:52:51.281 <INFO>   [SM_Init_State : 790] OTA_Init SUCCESS
+(COMMHDLR)    2026.04.11-04:52:51.281 <INFO>   [COMM_Module_Init : 604] COMM_Module_Init
+(COMMHDLR)    2026.04.11-04:52:51.282 <INFO>   [COMM_Module_Init : 631] COMMUNICATION Request and Response Thread Creation Successfull
+(COMMHDLR)    2026.04.11-04:52:51.282 <INFO>   [COMM_Module_Init : 649] Old_Meas_File_Upload Thread Creation Successfull
+(COMMHDLR)    2026.04.11-04:52:51.282 <INFO>   [COMM_Module_Init : 680] COMM_Init Successfull
+(STM)         2026.04.11-04:52:51.282 <INFO>   [SM_Init_State : 801] COMM_Init SUCCESS
+(STM)         2026.04.11-04:52:51.282 <INFO>   [SM_Init_State : 812] THRIFT_Init SUCCESS
+(STM)         2026.04.11-04:52:51.282 <INFO>   [SM_SetState : 1377] State Change Request Valid: DIAGNOSTICS
+(FOTA)        2026.04.11-04:52:51.282 <INFO>   [OTA_ReadUbootEnvVar : 1255] Current Rootfspart :1
+(FOTA)        2026.04.11-04:52:51.282 <INFO>   [OTA_ReadUbootEnvVar : 1292] Cloud OTA Status and Deploy Status are in sync
+(FOTA)        2026.04.11-04:52:51.283 <INFO>   [OTA_ReadUbootEnvVar : 1414] FOTA File Removal Status:-1
+(FOTA)        2026.04.11-04:52:51.283 <INFO>   [OTA_ReadUbootEnvVar : 1425] FOTA Read FPGA Version: 8
+(FOTA)        2026.04.11-04:52:51.283 <INFO>   [OTA_ReadUbootEnvVar : 1442] FPGA Version and Macro FPGA Version are Proper
+(FOTA)        2026.04.11-04:52:51.283 <INFO>   [OTA_ThreadFwUpdate : 940] FOTA Sucess Reading U-boot Variables
+(STM)         2026.04.11-04:52:51.283 <INFO>   [SM_Init_State : 837] Exit : INIT
+(STM)         2026.04.11-04:52:51.283 <INFO>   [ApplThread_MainStateMachine : 509] Change State from [INIT] to [DIAGNOSTICS]
+(STM)         2026.04.11-04:52:51.283 <INFO>   [SM_Diagnostics_State : 1009] Enter : DIAGNOSTICS
+(FOTA)        2026.04.11-04:52:51.283 <INFO>   [OTA_ThreadFwUpdate : 959] FOTA Update Thread Waiting For Signal
+(EEPROM)      2026.04.11-04:52:51.291 <INFO>   [EEP_Test : 418] EEPROM Test Pass
+(DIAG)        2026.04.11-04:52:51.291 <INFO>   [DIAG_Store_Result_Data : 122] Test EEPROM SUCCESS
+(FPGA_COMM)   2026.04.11-04:52:51.291 <ERROR>  [FPGA_CommDig : 457] FPGA Version match
+(DIAG)        2026.04.11-04:52:51.291 <INFO>   [DIAG_Store_Result_Data : 122] Test FPGA Communication SUCCESS
+(DIAG)        2026.04.11-04:52:51.291 <INFO>   [SENS_TempSensorTest : 135] Disabled : Reading Sensor Temprature
+(TEMPSENS)    2026.04.11-04:52:51.309 <INFO>   [SENS_TempHumiRead : 110] [MUX1_TEMP1_INPUT] :: 29.789000
+(TEMPSENS)    2026.04.11-04:52:51.310 <INFO>   [SENS_TempHumiRead : 110] [MUX1_HUMI1_INPUT] :: 3.125000
+(TEMPSENS)    2026.04.11-04:52:51.328 <INFO>   [SENS_TempHumiRead : 110] [MUX1_TEMP2_INPUT] :: 31.226000
+(TEMPSENS)    2026.04.11-04:52:51.328 <INFO>   [SENS_TempHumiRead : 110] [MUX1_HUMI2_INPUT] :: 0.012000
+(DIAG)        2026.04.11-04:52:51.328 <INFO>   [DIAG_Store_Result_Data : 122] Test Temperature & Humidity Sensor SUCCESS
+(DIAG)        2026.04.11-04:52:51.328 <INFO>   [DIAG_TestAllPeripherals : 152] Disabled LED VALIDATION *VOC*
+(DIAG)        2026.04.11-04:52:51.913 <INFO>   [DIAG_Store_Result_Data : 122] Test All Peripheral Diagnostic SUCCESS
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_SetState : 1377] State Change Request Valid: PROVISIONING
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_Diagnostics_State : 1024] Exit : DIAGNOSTICS
+(STM)         2026.04.11-04:52:51.913 <INFO>   [ApplThread_MainStateMachine : 509] Change State from [DIAGNOSTICS] to [PROVISIONING]
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_DeviceProvisioning_State : 850] Enter : PROVISIONING
+(PROVISION)   2026.04.11-04:52:51.913 <INFO>   [PROVISION_check : 87] Device is provisioned 
+(COMMHDLR)    2026.04.11-04:52:51.913 <INFO>   [COMM_SendDeviceProvisionStatus : 769] COMM Success send message to cloud
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_SetState : 1377] State Change Request Valid: FOTA
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_DeviceProvisioning_State : 865] Exit : PROVISIONING
+(STM)         2026.04.11-04:52:51.913 <INFO>   [ApplThread_MainStateMachine : 509] Change State from [PROVISIONING] to [FOTA]
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_FOTA_State : 877] Enter : FOTA
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_FOTA_State : 888] Successfully Read Uboot Variables
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_SetState : 1377] State Change Request Valid: CONFIGURATION
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_FOTA_State : 893] Exit : FOTA
+(STM)         2026.04.11-04:52:51.913 <INFO>   [ApplThread_MainStateMachine : 509] Change State from [FOTA] to [CONFIGURATION]
+(STM)         2026.04.11-04:52:51.913 <INFO>   [SM_Configuration_State : 908] Enter : CONFIGURATION
+(USB)    2026.04.11-04:52:52.621 <INFO>   [USB_ThreadCP : 380] Disabled audio functions in eAUDIO_USB_ATTACH_WAV
+(USB)    2026.04.11-04:52:52.622 <INFO>   [USB_ThreadCP : 384] USB Pen Drive Mounted 
+(USB)    2026.04.11-04:52:52.622 <ERROR>  [USB_ThreadCP : 431] BT_mac file not exit's
+(USB)    2026.04.11-04:52:52.622 <ERROR>  [USB_ThreadCP : 452] VOC_Algo.txt not exit's
+(USB)    2026.04.11-04:52:52.622 <ERROR>  [USB_ThreadCP : 488] /mnt/WiFi_Credentials.txt not exit's
+(USB)    2026.04.11-04:53:02.933 <INFO>   [USB_ThreadCP : 711] Disabled audio functions in eAUDIO_USB_REMOVE
+(FPGA_COMM)   2026.04.11-04:53:12.020 <INFO>   [FPGA_MeasStop : 764] Userspace signal disable 
+
+(MEASUREMENT) 2026.04.11-04:53:12.020 <INFO>   [MEAS_ReceivedFPGAInterrupt : 374] Received MEAS FPGA Stop signal
+(MAIN_APP)    2026.04.11-04:53:12.020 <ERROR>  [MAINAPPL_LoadMeasTimingParams : 415] FAIL: Invalid MeasTimePalmOn and RecovTimePalmOff from MB_EEPROM, Reverting to default
+(MAIN_APP)    2026.04.11-04:53:12.020 <INFO>   [MAINAPPL_LoadMeasTimingParams : 420] MeasTimePalmOn :[3 sec] and RecovTimePalmOff :[4 sec]
+(PROXIMITY)   2026.04.11-04:53:12.020 <INFO>   [PROXI_LoadPalmThresholdParams : 737] ProxiThreshold (0:PASS, nonzero: FAIL) - EEPROM ReadStatus: 0
+(PROXIMITY)   2026.04.11-04:53:12.020 <INFO>   [PROXI_LoadPalmThresholdParams : 754] 75mm: 15, 50mm: 35, 25mm: 120, 3mm: 1000
+(STM)         2026.04.11-04:53:12.020 <INFO>   [SM_Configuration_State : 957] *** Waiting for Powerup Sensor Calibration ***
+(TESTAPP)     2026.04.11-04:53:12.782 <INFO>   [TESTAPP_Thread : 1615] CmdId: 1, SubCmdID: 1
+(TESTAPP)     2026.04.11-04:53:12.782 <INFO>   [TESTAPP_Thread : 1628] Rcvd eCMDID_SET_WAVE_ENVIRONMENT
+(TESTAPP)     2026.04.11-04:53:12.782 <INFO>   [TESTAPP_Thread : 1631] Test Mode Enable
+(TESTAPP)     2026.04.11-04:53:12.782 <INFO>   [TESTAPP_Thread : 1984] Response Sent to Sensor ALGO
+(TESTAPP)     2026.04.11-04:53:12.802 <INFO>   [TESTAPP_Thread : 1615] CmdId: 2, SubCmdID: 0
+(TESTAPP)     2026.04.11-04:53:12.802 <INFO>   [TESTAPP_Thread : 1756] Rcvd eCMDID_WR_DAC_CONFIG
+(FPGA_COMM)   2026.04.11-04:53:12.803 <INFO>   [FPGA_SetDACBasicConfig : 337] Set DAC DStep: [0.200000V 0x0444], GStep: [0.050000V 0x0111], dwell_time: [50ms]
+(TESTAPP)     2026.04.11-04:53:12.804 <INFO>   [TESTAPP_WriteDACConfig : 1160] DO NOT Write DAC Config to EEPROM
+(FPGA_COMM)   2026.04.11-04:53:12.804 <INFO>   [FPGA_DACConfig : 1147] FPGA PowerupRead - X1Acode[0]: 0x5554, X1Acode[32]: 0x5554
+(FPGA_COMM)   2026.04.11-04:53:12.804 <INFO>   [FPGA_DACConfig : 1184] FPGA - DAC LDAC HIGH
+(FPGA_COMM)   2026.04.11-04:53:12.804 <INFO>   [FPGA_DACConfig : 1187] FPGA PowerupWrite - X1Acode[0]: 0xc88000, X1Acode[32]: 0xc88000
+(FPGA_COMM)   2026.04.11-04:53:12.805 <INFO>   [FPGA_DACWriteNewGroupOFSCode : 485] FPGA Read OFS, grpOFScode[1]: 0x22000, grpOFScode[2]: 0x32000
+(FPGA_COMM)   2026.04.11-04:53:12.805 <INFO>   [FPGA_DACConfig : 1206] FPGA - Write New GroupOFS Code to DAC
+(FPGA_COMM)   2026.04.11-04:53:12.807 <INFO>   [FPGA_DACConfig : 1217] FPGA - DAC LDAC Down
+(FPGA_COMM)   2026.04.11-04:53:12.807 <INFO>   [FPGA_DACConfig : 1223] FPGA - dacCurrent X1Acode[0]: 0xc88000, X1Acode[32]: 0xc88000
+(FPGA_COMM)   2026.04.11-04:53:12.807 <INFO>   [FPGA_DACConfig : 1232] FPGA - dacCurrentVout[0]: 0.000000, dacCurrentVout[32]: 0.000000
+(FPGA_COMM)   2026.04.11-04:53:12.807 <INFO>   [FPGA_DACConfig : 1240] TARGET - dacTargetVout[0]: -2.000061, dacTargetVout[32]: 1.999878
+(FPGA_COMM)   2026.04.11-04:53:12.807 <INFO>   [FPGA_DACConfig : 1282] finalMaxDacChSteps 10
+(FPGA_COMM)   2026.04.11-04:53:13.311 <INFO>   [FPGA_DACConfig : 1477] FPGA - X1Acode[0]: 0xc85558, X1Acode[32]: 0xc8aaa8
+(FPGA_COMM)   2026.04.11-04:53:13.318 <INFO>   [FPGA_DACConfig : 1520] FPGA - X1Acode[0]: 0xc85555, X1Acode[32]: 0xc8aaaa
+(FPGA_COMM)   2026.04.11-04:53:13.318 <INFO>   [FPGA_DACConfig : 1522] Success
+(TESTAPP)     2026.04.11-04:53:13.318 <INFO>   [TESTAPP_Thread : 1762] Successfully Ramp DAC config
+(TESTAPP)     2026.04.11-04:53:13.318 <INFO>   [TESTAPP_Thread : 1984] Response Sent to Sensor ALGO
+(TESTAPP)     2026.04.11-04:53:13.332 <INFO>   [TESTAPP_Thread : 1615] CmdId: 1, SubCmdID: 0
+(TESTAPP)     2026.04.11-04:53:13.332 <INFO>   [TESTAPP_Thread : 1628] Rcvd eCMDID_SET_WAVE_ENVIRONMENT
+(TESTAPP)     2026.04.11-04:53:13.333 <INFO>   [TESTAPP_Thread : 1634] Test Mode Disable
+(TESTAPP)     2026.04.11-04:53:13.333 <INFO>   [TESTAPP_Thread : 1984] Response Sent to Sensor ALGO
+(STM)         2026.04.11-04:53:13.334 <INFO>   [SM_Configuration_State : 961] *** Rcvd Sensor Calib response ***
+(STM)         2026.04.11-04:53:13.334 <INFO>   [SM_SetState : 1377] State Change Request Valid: READY
+(STM)         2026.04.11-04:53:13.334 <INFO>   [SM_Configuration_State : 995] Exit : CONFIGURATION
+(STM)         2026.04.11-04:53:13.334 <INFO>   [ApplThread_MainStateMachine : 509] Change State from [CONFIGURATION] to [READY]
+(STM)         2026.04.11-04:53:13.334 <INFO>   [SM_DeviceReady_State : 1038] Enter : READY
+(STM)         2026.04.11-04:53:13.334 <INFO>   [SM_DeviceReady_State : 1068] Disabled audio/led func in eLED_SUB_VALIDATION
+(STM)         2026.04.11-04:53:13.356 <INFO>   [SM_DeviceReady_State : 1080] Exit : READY
+(THRIFT_COMM)     2026.04.11-06:48:30.629 <INFO>   [THRIFT_Thread : 604] Thrift python              connection Established 
+
+(THRIFT_COMM)     2026.04.11-06:48:30.629 <INFO>   [THRIFT_Thread : 609] Wait for                Receiving the command from the Thrift python server                 0
+
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [THRIFT_Thread : 634] select return               1
+
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [THRIFT_Thread : 642] select TP1
+
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [THRIFT_Thread : 666] CmdId: 17, SubCmdID:                          0 0 b1=0 b2=0
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [THRIFT_Thread : 669]  CmdId: 17,                          SubCmdID: 0
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [THRIFT_Thread : 689] Wave Device Status =                          5, testcmdID =17 TestMode = 0
+(TESTAPP)     2026.04.11-06:48:42.654 <INFO>   [handleTestCmdId : 121]  : handleTestCmdId TP1
+
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [getDeviceStatus : 174] Rcvd eCMDID_GET_DEVICE_STATUS****0
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [THRIFT_Thread : 719] Sending response to                      Thrift client
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [THRIFT_Thread : 754] gtTestSignalStopRx  = 0 
+(THRIFT_COMM)     2026.04.11-06:48:42.654 <INFO>   [THRIFT_Thread : 609] Wait for                Receiving the command from the Thrift python server                 0
+
+(THRIFT_COMM)     2026.04.11-06:48:42.868 <INFO>   [THRIFT_Thread : 634] select return               1
+
+(THRIFT_COMM)     2026.04.11-06:48:42.869 <INFO>   [THRIFT_Thread : 642] select TP1
+
+(THRIFT_COMM)     2026.04.11-06:48:42.869 <INFO>   [THRIFT_Thread : 666] CmdId: 18, SubCmdID:                          0 0 b1=0 b2=0
+(THRIFT_COMM)     2026.04.11-06:48:42.869 <INFO>   [THRIFT_Thread : 669]  CmdId: 18,                          SubCmdID: 0
+(THRIFT_COMM)     2026.04.11-06:48:42.869 <INFO>   [THRIFT_Thread : 689] Wave Device Status =                          5, testcmdID =18 TestMode = 0
+(TESTAPP)     2026.04.11-06:48:42.869 <INFO>   [handleTestCmdId : 121]  : handleTestCmdId TP1
+
+(THRIFT_COMM)     2026.04.11-06:48:42.869 <INFO>   [abortMeasurement : 209] Rcvd eCMDID_ABORT_MEASUREMENT
+(THRIFT_COMM)     2026.04.11-06:48:42.869 <INFO>   [THRIFT_Thread : 719] Sending response to                      Thrift client
+(THRIFT_COMM)     2026.04.11-06:48:42.869 <INFO>   [THRIFT_Thread : 754] gtTestSignalStopRx  = 0 
+(THRIFT_COMM)     2026.04.11-06:48:42.869 <INFO>   [THRIFT_Thread : 609] Wait for                Receiving the command from the Thrift python server                 0
+

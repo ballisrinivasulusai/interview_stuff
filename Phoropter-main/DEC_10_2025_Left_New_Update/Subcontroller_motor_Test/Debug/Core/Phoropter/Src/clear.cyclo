@@ -1,0 +1,5 @@
+../Core/Phoropter/Src/clear.c:25:9:clear_cmd	4
+../Core/Phoropter/Src/clear.c:66:6:clear_SubFun1	1
+../Core/Phoropter/Src/clear.c:141:6:clear_SubFun2	8
+../Core/Phoropter/Src/clear.c:236:6:Prism_Homing	4
+../Core/Phoropter/Src/clear.c:275:6:Initial_Homing	1

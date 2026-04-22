@@ -1,0 +1,205 @@
+Got it 👍 — you want to **remove current GitHub connection and connect a new account**. I’ll give you **simple step-by-step**.
+
+---
+# 🔴 Step 1: Remove old Git config (name & email)
+
+```bash
+git config --global --unset user.name
+git config --global --unset user.email
+```
+👉 Check:
+```bash
+git config --global --list
+```
+# 🔴 Step 2: Remove old SSH key (important)
+```bash
+ls ~/.ssh
+👉 Remove old key:
+
+```bash
+rm ~/.ssh/id_ed25519
+rm ~/.ssh/id_ed25519.pub
+```
+# 🔴 Step 3: Create new SSH key (new account)
+
+```bash
+ssh-keygen -t ed25519 -C "your_new_email@gmail.com"
+Press Enter → Enter → Enter
+# 🔴 Step 4: Add key to SSH agent
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+---
+
+# 🔴 Step 5: Copy key
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+👉 Copy full output
+
+---
+
+# 🔴 Step 6: Add to GitHub
+
+* Go to GitHub → Settings
+* SSH and GPG keys
+* Click **New SSH Key**
+* Paste → Save
+
+---
+
+# 🔴 Step 7: Set new Git config
+
+```bash
+git config --global user.name "New Name"
+git config --global user.email "your_new_email@gmail.com"
+```
+
+---
+
+# 🔴 Step 8: Test connection
+
+```bash
+ssh -T git@github.com
+```
+
+👉 Should show:
+
+```bash
+Hi NEW_USERNAME! You've successfully authenticated...
+```
+
+---
+
+# 🧠 Important Note
+
+If you already cloned repos:
+
+```bash
+git remote -v
+```
+
+👉 If needed, update:
+
+```bash
+git remote set-url origin git@github.com:NEW_USERNAME/repo.git
+```
+
+---
+
+# ✅ Final Summary
+
+* Remove old config ✔
+* Delete old SSH key ✔
+* Create new key ✔
+* Add to GitHub ✔
+* Test ✔
+
+---
+
+If you want easier way 👍
+👉 I can show **how to use multiple GitHub accounts without deleting old one** (very useful)
+
+
+
+
+
+
+
+
+
+how to add one source file in github
+->first connect your terminal through your git ,fallow above steps 
+->create on directory (repository(mkdir sample))
+->  cd sample 
+-> git init  (Initializes Git and starts tracking the project)
+-> copy the folder using cp command with proper path
+
+
+
+
+
+
+
+
+
+
+
+zumi@zumi-karthi:~$ ssh -T git@github.com
+Hi srinivasuluZumi! You've successfully authenticated, but GitHub does not provide shell access.
+zumi@zumi-karthi:~$ git config --global user.name
+srinivasulusballi
+zumi@zumi-karthi:~$ git config --global user.email
+srinivasulus614@gmail.com
+zumi@zumi-karthi:~$ ssh -T git@github.com
+Hi srinivasuluZumi! You've successfully authenticated, but GitHub does not provide shell access.
+zumi@zumi-karthi:~$ git config --global --unset user.name
+zumi@zumi-karthi:~$ git config --global --unset user.email
+zumi@zumi-karthi:~$ git config --global --list
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+credential.helper=store
+http.postbuffer=2G
+http.maxrequestbuffer=2097152000
+http.lowspeedlimit=1000
+http.lowspeedtime=600
+safe.directory=/home/zumi/binary/board/aws-iot-securetunneling-localproxy
+safe.directory=/home/zumi/binary/Tunnel/connect_device_package/lib/Catch2/aws-iot-securetunneling-localproxy
+safe.directory=/home/zumi/binary/board_pc/aws-iot-device-client
+safe.directory=/home/zumi/binary/board_pc/aws-iot-device-client
+color.ui=auto
+pack.threads=4
+pack.depth=50
+pack.windowmemory=512m
+core.compression=9
+core.deltabasecachelimit=256m
+core.loosecompression=9
+core.packedgitlimit=256m
+core.packedgitwindowsize=256m
+zumi@zumi-karthi:~$ ls ~/.ssh
+authorized_keys  config  gitlab_karthi  gitlab_karthi.pub  id_ed25519  id_ed25519.pub  id_rsa  id_rsa.pub  known_hosts  known_hosts.old
+zumi@zumi-karthi:~$ ssh -T git@github.com
+Hi srinivasuluZumi! You've successfully authenticated, but GitHub does not provide shell access.
+zumi@zumi-karthi:~$ rm ~/.ssh/id_ed25519
+zumi@zumi-karthi:~$ rm ~/.ssh/id_ed25519.pub
+zumi@zumi-karthi:~$ ssh-keygen -t ed25519 -C "srinivasulus614@gmail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/zumi/.ssh/id_ed25519): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/zumi/.ssh/id_ed25519.
+Your public key has been saved in /home/zumi/.ssh/id_ed25519.pub.
+The key fingerprint is:
+SHA256:aqKReUmLIFVSF8twd+foE/JAA8+vU/R3zkJMaodoo5o srinivasulus614@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|  ..+ =o+ . .    |
+|   o = * o +     |
+|  .   o = + . .  |
+| .       B + =   |
+|o   .   S X = = .|
+|.. = o . = + + + |
+|  = = o +     . o|
+|   + o o .     . |
+|  .   E          |
++----[SHA256]-----+
+zumi@zumi-karthi:~$ eval "$(ssh-agent -s)"
+Agent pid 14060
+zumi@zumi-karthi:~$ ssh-add ~/.ssh/id_ed25519
+Identity added: /home/zumi/.ssh/id_ed25519 (srinivasulus614@gmail.com)
+zumi@zumi-karthi:~$ cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB/i0FswR7iUWkjR+OEaSSTTJX/xFIYJik54sz6dfeo6 srinivasulus614@gmail.com
+zumi@zumi-karthi:~$ ^C
+zumi@zumi-karthi:~$ ssh -T git@github.com
+git@github.com: Permission denied (publickey).
+zumi@zumi-karthi:~$ ssh -T git@github.com
+Hi srinivasulusballi! You've successfully authenticated, but GitHub does not provide shell access.
+zumi@zumi-karthi:~$ 
+
