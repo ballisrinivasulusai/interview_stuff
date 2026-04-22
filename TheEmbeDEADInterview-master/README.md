@@ -1,0 +1,85 @@
+# TheEmbeDEADInterview
+
+Welcome to TheEmbeDEADInterview questions repository! This repository is a collection of interview questions and resources for various embedded verticals. Whether you're a job seeker preparing for an interview or an interviewer looking for questions to assess candidates, this repository aims to provide a wide range of topics to cover.
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+- [Topics Covered](#topics-covered)
+- [Contributing](#contributing)
+- [Similar sources](#similar-sources)
+
+## Introduction
+
+This repository serves as a comprehensive resource for anyone interested in embedded systems and related domains. It contains a curated list of interview questions covering a wide range of topics, including baremetal programming, networking, multimedia, Embedded programming languages (C, C++, Python), version control with Git, Linux kernel programming, device driver development, soft skills required in interviews, HR questions, data structures, hardware abstraction layers (HAL), inter-process communication, Yocto Project, and more.
+
+Whether you are a beginner or an experienced professional, this repository aims to help you prepare for interviews, expand your knowledge, and enhance your understanding of embedded systems.
+
+## Getting Started
+
+To access the interview questions and resources in this repository, you can either clone the repository to your local machine or explore the content directly on the GitHub web interface.
+
+## Topics Covered
+
+The interview questions in this repository are organized into folders based on the various embedded verticals. Here's an overview of the topics covered:
+
+NOTE: Questions are not yet added for some of below topics, star/watch/fork the repository and stay tuned for future updates.
+- ATF and ARM TrustZone
+- BSP Porting Bringup
+- Bootloader
+- C
+- CPP
+- C+CPP
+- Client communications
+- Debugging tools
+  - Hardware Debugging(DSO,CRO,Logic Analyzer,Spectrum Analyzer)
+  - Software Debugging(ADB,GDB,JTAG,KGDB)
+- Development tools(Bit-Bucket,CVS,Confluence,JIRA,SourceTree)
+- Device drivers(ALSA,Bluetooth,DRM,Device-Tree,Ethernet,PCI,
+                 SCSI,I2C,UART,SPI,USB,WLAN,NFC,Network,SATA,V4L2)
+- Documentations
+- Embedded systems
+- File Systems
+- Version Control Systems
+- Generic(/HR)
+- HAL(Hardware Abstraction Layer)
+- IPC(Inter Process Communication)
+- Leadership and Management
+- Linux Kernel(Internals,Debugging,Boot,Process Management,Linux FileSystems)
+- Multimedia(GStreamer, Basics, Video Coding, GPU)
+- PoC(Proof of Concept)
+- Protocols(Networking, Display Interface, Wireless Display)
+- Quality Processes(Agile,CMMi)
+- SoftSkills
+- Toolchains
+- Yocto
+
+Feel free to explore the folders and dive into the specific areas that interest you or align with your interview preparation needs.
+
+## Contributing
+
+Contributions to this repository are highly encouraged. If you have additional interview questions, resources, or improvements to existing content, please follow these steps to contribute:
+
+1. Fork the repository to your own GitHub account.
+2. Create a new branch for your changes.
+3. Make your modifications/additions.
+4. Commit and push your changes to your branch.
+5. Open a pull request from your branch to the main repository.
+6. Provide a clear description of your changes and their relevance.
+
+Your contributions will help make this repository more valuable and beneficial for the entire embedded community.
+
+## Similar sources
+
+1. [TheEmbeddedNewTestament](https://github.com/theEmbeddedGeorge/theEmbeddedNewTestament.github.io/tree/master)
+2. [AwesomeEmbedded](https://github.com/nhivp/Awesome-Embedded)
+3. [Awesome-C](https://github.com/uhub/awesome-c)
+4. [Awesome Embedded Systems](https://github.com/embedded-boston/awesome-embedded-systems)
+
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=imsunilvaghela/TheEmbeDEADInterview&type=Date)](https://star-history.com/#imsunilvaghela/TheEmbeDEADInterview&Date)
+
+
