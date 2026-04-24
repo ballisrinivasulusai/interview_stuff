@@ -1,0 +1,436 @@
+#include<stdio.h>
+void main(){
+int ptr=-41;
+char otr=3;
+ptr=ptr>>otr;
+printf("r_shift -->%d \n",ptr);
+}
+
+//-6
+---------------------------------------------------------
+#include<stdio.h>
+void main(){
+static int k=0x0b;
+if(--k>07){
+main();
+printf("%d  \n",k);
+}
+}
+
+//7 7 7
+----------------------------------------------------------
+
+what type of data is stored in register?
+-->int
+-->char
+-->float
+-----------------------------------------------------------
+
+#include<stdio.h>
+void main(){
+char *p[]={"coding","sirji"};
+char **q=p;
+q++;
+printf("%c \n",**q+1);
+
+printf("%c \n",*q[-1]+3);
+
+}
+
+//t e
+------------------------------------------------------------
+
+#include<stdio.h>
+void main(){
+
+        char *sirji[]={"c","ds","interview"};
+        printf("%s\n",*(sirji+2)+5);
+        printf("%c \n",++ *sirji[1]);
+}
+
+//view
+//segmentation fault 
+-----------------------------------------------------------
+
+These fucn calls are same. 
+fseek(fp,0,0); == rewind(fp);
+-----------------------------------------------------------
+
+#include<stdio.h>
+struct stu{
+char *name;
+};
+
+struct stu s;
+
+struct stu w_cup();
+printf("%s ",s.name);
+s.name="dhoni";
+return s;
+}
+main(){
+struct stu m=w_cup();
+printf("%s ",m.name);
+m.name="india";
+printf("%s\n",s.name);
+
+}
+
+//kohli dhoni dhoni
+---------------------------------------------------------
+#include<stdio.h>
+int *m()
+{
+        int *p=5;
+        return p;
+}
+void main(){
+        int *k=m();
+        printf("%d",k);
+}
+
+//5
+----------------------------------------------------------
+
+#include<stdio.h>
+void main(){
+char n=260;
+switch(n++==4)
+{
+case 1:
+printf("Attitude. \n");
+break;
+case 0:
+printf("Excellence \n");
+break;
+default:
+printf("inside def \n");
+}
+
+}
+
+//Attitude
+---------------------------------------------------------
+prototypes of 
+1)fprintf();
+2)fwrite();
+3)fseek();
+------------------------------------------------------
+
+#include<stdio.h>
+main(){
+int i=0;
+while(i<3,i=0,i<5)
+{
+printf("Loop ");
+i++;
+}
+}
+
+//Loop infinte times..
+---------------------------------------------------------
+#include<stdio.h>
+main(){
+int a[]={11,22,33,44,55,66,77};
+short int (*p)[2]=&a;
+
+printf("%d \n",p[3][2]);
+}
+
+//55
+-------------------------------------------------------
+#include<stdio.h>
+struct vector{
+int id;
+char name[8];
+struct vector *z;
+}
+main(){
+        struct vector p[2]={{31,"coding",&p[1]},{51,"sirji",&p[0]}};
+        printf("%c \n",(*p[0].name)+4);
+}
+
+//g
+--------------------------------------------------------
+
+#include<stdio.h>
+main(){
+unsigned int csk=-007;
+printf("%d\n",csk>05);
+}
+
+//1
+-------------------------------------------------------
+
+#include<stdio.h>
+main(){
+double d=-99.345;
+short int *p;
+p=(short int*)&d;
+p=p+3;
+printf("%d\n",*p>>15&1);
+}
+
+//1
+------------------------------------------------------
+
+main(){
+int i;
+for(i=5;++i;i-=3)
+printf("%d ",i);
+}
+//6 4 2
+------------------------------------------------
+
+#include<stdio.h>
+typedef int s32;
+#define FUN(n,i) n^(3<<i)
+main(){
+s32 c,d;
+c=FUN(31,3);
+d=FUN(16,4);
+printf("%d %d\n",c,d);
+}
+
+//7 32
+--------------------------------------------------
+main(){
+int i,j;
+for(i=0,j=0;i<5,j<5;i++,j++);
+printf("%d %d",i,j);
+}
+
+//25 25
+--------------------------------------
+"ENUM" is Used to assign names to integral constants .
+---------------------------------------------------
+#include<stdio.h>
+void array(int *a){
+*++a='a';
+
+}
+main(){
+int arr[]={1,2,3};
+array(arr);
+printf("%d\n",*(arr+1));
+}
+
+//97
+-------------------------------------------
+
+#include<stdio.h>
+struct ind{
+int RCB;
+char name[8];
+struct ind *z;
+};
+void main(){
+struct ind p[2]={{32,"cricket",&p[1]},{11,"maxwell",0}};
+printf("%d \n",p[0].z->RCB);
+}
+
+//11
+------------------------------------------
+
+main(){
+double a[2][3];
+printf("%d ",sizeof(a));
+printf("%d ",sizeof(a[1]));
+printf("%d\n",sizeof(a[1][1]));
+}
+
+//48 24 8
+---------------------------------------
+
+#include<stdlib.h>
+#define s32 int
+typedef struct st{
+s32 k;
+struct st *link;
+}SLL;
+void add(){
+*p=malloc(10);
+}
+main(){
+SLL *head=NULL;
+add(&head);
+head->k=123;
+printf("%d\n",head->k>>2);
+}
+
+//30
+------------------------------------
+
+union USA{
+int i;
+char k;
+}v={0xabcd};
+main(){
+union USA *IND=&v;
+IND->k=171;
+printf(""%x\n",v.i);
+}
+
+//abab
+------------------------------
+
+int fun(int,int*,int*,int**);
+main(){
+int a=100;
+int *p=&a;
+fun(a,&a,p,&p);
+printf("%d \n",*p);
+}
+int fun(int a,int *p,int *q,int **pp){
+a+=10;
+*p+=20;
+printf("%d \n",*p);
+*q+=30;
+printf("%d \n",*q);
+**pp+=40;
+}
+
+//120 150 190
+------------------------------
+
+Nodes in a linked list are implemented using "SELF REFERENTIAL STRUCTURE".
+-------------------------------
+
+#include<stdlib.h>
+void *dma();
+main(){
+int *p=dma();
+*p+=3;
+printf("%d \n",*p);
+}
+void *dma(){
+return calloc(1,4);
+}
+
+//3
+-------------------------------------
+
+void main(){
+int movie=1;
+switch(movie<<2+movie){
+        default:printf("chennai");
+        case 4:printf("Hyderabad");
+        case 5:printf("Vector");
+        case 8:printf("Bangalore");
+
+}
+}
+//Bangalore 
+-------------------------------------
+main(){
+int a=0x111;
+short int b=0111;
+unsigned char CSK=11;
+CSK =CSK+b+a;
+printf("%d\n",CSK);
+}
+
+//101
+------------------------------------
+#include<stdio.h>
+main(){
+while(!!7)
+printf("Hai");
+}
+
+//Infinite
+-----------------------------------
+main(){
+//datafile content-->123456 abcd
+char k,i=3,s[10];
+FILE *fp=fopen("data","r");
+while(k=fgetc(fp),--i);
+printf("%d\n",k);
+fscanf(fp,"%s",s);
+printf("%s\n",s);
+}
+//51 456
+----------------------------------
+
+#include<stdlib.h>
+#include<string.h>
+typedef struct IPL{
+int run;
+char name[11];
+}CSK;
+void fun(CSK **p){
+CSK *t;
+t=malloc(sizeof(CSK));
+strcpy(t->name,"coding");
+t->run=3;
+*p=t;
+}
+main(){
+CSK *p;
+fun(&p);
+printf("%s\n",p->name+p->run);
+}
+//ing
+--------------------------------
+
+struct Bengaluru {
+int RCB;
+};
+main(){
+struct Bengaluru star;
+star.RCB=-12;
+printf("%d \n",star.RCB>>3);
+}
+//-2
+-------------------------------
+
+main(){
+int n=10;
+int func(int);
+printf("%d",func(n));
+}
+int func(int n){
+if(n>0)
+return(n+func(n-2));
+else
+return 0;
+}
+//30
+------------------------------
+#include<stdlib.h>
+int a[]={11,33,55};
+typedef struct stu{
+int rn;
+struct stu *next;
+}node;
+void add_node(node **);
+main(){
+static node *hp;
+add_node(&hp);
+printf("%d\n",hp->rn);
+}
+void add_node()
+{
+node *new=malloc(sizeof(node));
+new->rn=*a+a[1];
+*p=new;
+}
+//44
+-------------------------------
+struct dir{
+int d,m;
+char n[10];
+}*p;
+
+main()
+{
+struct dir vec={19,05,"raju"};
+p=&vec;
+printf("%d \n",p->m>>1);
+vec.d=p->m
+printf("%c \n",p->n[1]+1);
+}
+
+//2 b
+------------------------------
+DONE👍✅

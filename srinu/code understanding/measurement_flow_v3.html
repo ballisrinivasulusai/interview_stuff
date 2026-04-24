@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Measurement Flow Diagram — v3</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#07090d;
+  --s1:#0c0f15;
+  --s2:#101520;
+  --border:#1c2535;
+  --text:#cdd5e0;
+  --muted:#4a5a72;
+  --blue:#4d9bff;
+  --green:#3dba5c;
+  --orange:#e8b84b;
+  --red:#f05a50;
+  --purple:#b97fff;
+  --cyan:#5bceff;
+  --yellow:#f5d06e;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'DM Sans',sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:13px;
+  padding:24px 16px 80px;
+  min-width:1380px;
+}
+
+/* PAGE HEADER */
+.hdr{text-align:center;margin-bottom:26px}
+.hdr h1{font-family:var(--mono);font-size:19px;color:var(--cyan);letter-spacing:2px;margin-bottom:5px}
+.hdr p{color:var(--muted);font-size:12px}
+
+/* LEGEND */
+.leg-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:22px}
+.leg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.leg-sq{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:202px 218px 258px 268px 212px;gap:0;position:relative}
+
+/* COLUMN HEADERS */
+.ch{text-align:center;padding:10px 6px 8px;font-size:10.5px;font-weight:600;border-radius:6px 6px 0 0;margin:0 3px;letter-spacing:.5px;text-transform:uppercase}
+.ch small{display:block;font-size:9px;font-weight:400;opacity:.55;margin-top:2px;text-transform:none;letter-spacing:0}
+.ch-ui   {background:#091b30;color:var(--cyan);  border-top:2px solid #1a5aaa}
+.ch-dmt  {background:#091a09;color:var(--green); border-top:2px solid #1f7a32}
+.ch-mt   {background:#1e0909;color:#ff9070;      border-top:2px solid #8a1f1f}
+.ch-bt   {background:#1e1600;color:var(--orange);border-top:2px solid #8a6000}
+.ch-tmr  {background:#130920;color:var(--purple);border-top:2px solid #6a3aaa}
+
+/* COLUMN BODIES */
+.cb{margin:0 3px;padding:8px 5px;border:1px solid var(--border);border-top:none;border-radius:0 0 5px 5px}
+.cb-ui  {background:#060e1a}
+.cb-dmt {background:#060e06}
+.cb-mt  {background:#110606}
+.cb-bt  {background:#110e00}
+.cb-tmr {background:#0a0614}
+
+/* BOXES */
+.bx{border-radius:5px;padding:8px 9px;margin-bottom:4px;position:relative;cursor:default;
+  transition:transform .12s,box-shadow .12s;border:1px solid transparent}
+.bx:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.7);
+  border-color:rgba(255,255,255,.15);z-index:20}
+.bx .fn{font-family:var(--mono);font-size:10.5px;font-weight:700;margin-bottom:4px}
+.bx .ft{display:inline-block;background:rgba(0,0,0,.5);border:1px solid var(--border);
+  border-radius:3px;padding:0 5px;font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:4px}
+.bx .rw{font-size:10px;color:#9eb0c8;line-height:1.75}
+
+/* line-number pill */
+.ln{display:inline-block;background:#07111f;border:1px solid #1a3050;
+  border-radius:3px;padding:0 4px;font-family:var(--mono);font-size:9px;
+  color:var(--blue);margin-right:2px;white-space:nowrap}
+
+.arr{text-align:center;color:var(--border);font-size:13px;margin:2px 0;line-height:1}
+
+/* box themes */
+.bx-ui    {background:#071527;border-color:#153668}
+.bx-act   {background:#0a1828;border-color:#1a3560}
+.bx-evt   {background:#061a0c;border-color:#145a24}
+.bx-evt .fn{color:#6de888}.bx-evt .rw{color:#88d898}
+.bx-thr   {background:#1a1400;border-color:#5a4400}
+.bx-thr .fn{color:var(--orange)}.bx-thr .rw{color:#d0a858}
+.bx-hw    {background:#161000;border-color:#5a3c00}
+.bx-hw .fn{color:#ffcc55}.bx-hw .rw{color:#c8a840}
+.bx-dec   {background:#140a28;border-color:#44207a}
+.bx-dec .fn{color:var(--purple)}.bx-dec .rw{color:#b890e8}
+.bx-ph    {background:#1c1300;border-color:#7a5500}
+.bx-ph .fn{color:#f5cc50;font-size:10px}.bx-ph .rw{color:#d4a840}
+.bx-ok    {background:#061506;border-color:#175a24}
+.bx-ok .fn{color:var(--green)}.bx-ok .rw{color:#70c880}
+.bx-fail  {background:#180606;border-color:#5a1414}
+.bx-fail .fn{color:var(--red)}
+
+/* FULL-WIDTH ROWS */
+.fw{grid-column:1/-1;display:flex;align-items:center;gap:8px;padding:7px 4px}
+.fw-line{flex:1;height:1px;background:var(--border)}
+.fw-badge{background:#160e00;border:1px solid #6a4c00;border-radius:4px;
+  padding:4px 14px;font-family:var(--mono);font-size:10px;color:var(--orange);
+  font-weight:600;letter-spacing:.5px;white-space:nowrap}
+
+/* REFERENCE TABLE */
+.tbl-wrap{margin-top:28px}
+.sec-ttl{font-family:var(--mono);font-size:13px;color:var(--cyan);
+  border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:14px;letter-spacing:1px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:#0e1520;color:var(--cyan);padding:8px 11px;text-align:left;
+  border:1px solid var(--border);font-family:var(--mono);font-size:9.5px;
+  text-transform:uppercase;letter-spacing:.5px}
+td{padding:6px 11px;border:1px solid var(--border);vertical-align:top}
+tr:nth-child(odd)  td{background:#08090e}
+tr:nth-child(even) td{background:#060810}
+td.ev{color:var(--orange);font-family:var(--mono);font-size:10px}
+td.lc{color:var(--blue);font-family:var(--mono);font-size:10px;white-space:nowrap}
+td.dc{color:#8da0b8}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>📊 MEASUREMENT FLOW DIAGRAM — WITH LINE NUMBERS</h1>
+  <p>Rebuilt from latest uploaded files &nbsp;|&nbsp; Every function &amp; key line verified</p>
+</div>
+
+<div class="leg-row">
+  <div class="leg"><div class="leg-sq" style="background:#071527;border:1px solid #153668"></div>UI / Init</div>
+  <div class="leg"><div class="leg-sq" style="background:#061a0c;border:1px solid #145a24"></div>Event / Signal</div>
+  <div class="leg"><div class="leg-sq" style="background:#1a1400;border:1px solid #5a4400"></div>Thread Start</div>
+  <div class="leg"><div class="leg-sq" style="background:#161000;border:1px solid #5a3c00"></div>Hardware / Cube</div>
+  <div class="leg"><div class="leg-sq" style="background:#140a28;border:1px solid #44207a"></div>Decision</div>
+  <div class="leg"><div class="leg-sq" style="background:#1c1300;border:1px solid #7a5500"></div>Gas Phase T0–T3</div>
+  <div class="leg"><div class="leg-sq" style="background:#061506;border:1px solid #175a24"></div>Complete</div>
+</div>
+
+<div style="overflow-x:auto">
+<div class="grid">
+
+<!-- ═══ HEADERS ═══ -->
+<div class="ch ch-ui">🖥 UI / MainWindow<small>MainWindow.py</small></div>
+<div class="ch ch-dmt">⚙ DeviceMeasurementThread<small>Measurement_Screen.py</small></div>
+<div class="ch ch-mt">🔬 MeasurementScreen (MT)<small>Measurement_Screen.py</small></div>
+<div class="ch ch-bt">🔌 BrickletThread (BT)<small>integrate.py</small></div>
+<div class="ch ch-tmr">⏱ Timer &amp; Temp Threads<small>integrate.py</small></div>
+
+<!-- ═══ COLUMN BODIES ═══ -->
+
+<!-- ── UI COLUMN ── -->
+<div class="cb cb-ui">
+
+  <div class="bx bx-ui">
+    <div class="fn">🖱 User Clicks Measurement Button</div>
+    <div class="ft">MainWindow.py</div>
+    <div class="rw">
+      <span class="ln">L763</span>change_screen("Measure") called<br>
+      <span class="ln">L864</span>check disk space (&lt;1GB → alert+return)<br>
+      <span class="ln">L872</span>get_continue_measurement() → if True → alert<br>
+      <span class="ln">L877</span>validate SN1, SN2, SampleID1, SampleID2<br>
+      <span class="ln">L895</span>set_var_Sensor_SN1/SN2, set_var_Sample_ID1/2
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">Prepare &amp; Fire</div>
+    <div class="ft">MainWindow.py L899</div>
+    <div class="rw">
+      <span class="ln">L899</span>updateTvariables_Bricklets()<br>
+      <span class="ln">L900</span>integrate.set_Count(0)<br>
+      <span class="ln">L901</span>integrate.ttotal = T1+T2+T3<br>
+      <span class="ln">L902</span>set_current_argon_flow(0.0)<br>
+      <span class="ln">L904</span>screens["Measure"].show_terminal()
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">🔔 Fire Start Events</div>
+    <div class="ft">MainWindow.py L907</div>
+    <div class="rw">
+      <span class="ln">L907</span>integrate.set_view_graph(False)<br>
+      <span class="ln">L908</span>integrate.set_mainmeasurement(True)<br>
+      <span class="ln">L909</span>integrate.startmeasurement1_event.set() ➜ DMT<br>
+      <span class="ln">L139</span>event declared in integrate.py<br>
+      <span class="ln">L921</span>stacked_widget.setCurrentWidget("Measure")
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-ui">
+    <div class="fn">TerminalDialog Active</div>
+    <div class="ft">Measurement_Screen.py L24</div>
+    <div class="rw">
+      <span class="ln">L698</span>measurement_complete_signal → handle_measurement_completion<br>
+      <span class="ln">L702</span>control_update_signal → handle_control_update<br>
+      <span class="ln">L703</span>switch_to_sample_screen → handle_switch_to_sample<br>
+      Live terminal + Cancel button shown
+    </div>
+  </div>
+
+  <div style="height:40px"></div>
+
+  <div class="bx bx-ok">
+    <div class="fn">✅ handle_measurement_completion(True)</div>
+    <div class="ft">Measurement_Screen.py L1080</div>
+    <div class="rw">
+      <span class="ln">L1082</span>terminal_dialog.measurement_completed(success)<br>
+      <span class="ln">L421</span>status label → GREEN, OK button enabled<br>
+      <span class="ln">L1087</span>if Sweep/Normal: post-meas operations
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-ok">
+    <div class="fn">📈 handle_switch_to_sample()</div>
+    <div class="ft">Measurement_Screen.py L749</div>
+    <div class="rw">
+      <span class="ln">L1189</span>switch_to_sample_screen.emit(False,"SAMPLE1",1)<br>
+      <span class="ln">L749</span>handle_switch_to_sample() handler<br>
+      Navigate to Sample screen, plot graph
+    </div>
+  </div>
+
+</div><!-- /cb-ui -->
+
+
+<!-- ── DeviceMeasurementThread COLUMN ── -->
+<div class="cb cb-dmt">
+
+  <div class="bx bx-thr">
+    <div class="fn">🚀 DeviceMeasurementThread</div>
+    <div class="ft">Measurement_Screen.py</div>
+    <div class="rw">
+      <span class="ln">L523</span>class DeviceMeasurementThread(QThread)<br>
+      <span class="ln">L525</span>measurement_completed = pyqtSignal(str,bool)<br>
+      <span class="ln">L527</span>__init__(measurement_screen, device_list)<br>
+      <span class="ln">L534</span>def run() — main loop
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">startAllThreads() — spawn workers</div>
+    <div class="ft">Measurement_Screen.py L995</div>
+    <div class="rw">
+      <span class="ln">L995</span>def startAllThreads()<br>
+      <span class="ln">L706</span>called from show_terminal() / __init__<br>
+      <span class="ln">L1004</span>if not BrickletThreadStarted:<br>
+      <span class="ln">L1011</span>&nbsp;BrickletWorker(QObject) → QThread<br>
+      <span class="ln">L478</span>&nbsp;class BrickletWorker → run() → BrickletThread()<br>
+      <span class="ln">L1023</span>&nbsp;TimerWorker(QObject) → QThread<br>
+      <span class="ln">L494</span>&nbsp;class TimerWorker → run() → Meas_timer_counter_thread()<br>
+      <span class="ln">L1035</span>&nbsp;TemperatureMonitorWorker → QThread<br>
+      <span class="ln">L508</span>&nbsp;class TemperatureMonitorWorker → run() → Temperature_Monitor_Worker_thread()<br>
+      <span class="ln">L1048</span>&nbsp;DeviceMeasurementThread(devices[0]).start()
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">⏳ Wait startmeasurement1_event</div>
+    <div class="ft">integrate.py L139</div>
+    <div class="rw">
+      <span class="ln">L537</span>set_continue_measurement(False)<br>
+      <span class="ln">L546</span>startmeasurement1_event.wait(timeout=1)<br>
+      <span class="ln">L139</span>event declared in integrate.py<br>
+      Blocks until MainWindow fires @ L909
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">Event received — prepare flags</div>
+    <div class="ft">Measurement_Screen.py</div>
+    <div class="rw">
+      <span class="ln">L582</span>startmeasurement1_event.clear()<br>
+      <span class="ln">L586</span>set_view_graph1(False)<br>
+      <span class="ln">L587</span>set_view_graph(False)<br>
+      <span class="ln">L599</span>set_continue_measurement(True)<br>
+      <span class="ln">L602</span>wait get_measurement_granted()<br>
+      <span class="ln">L618</span>Start_data_acquisition_event.clear()
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-dec">
+    <div class="fn">🔀 Which measurement type?</div>
+    <div class="ft">Measurement_Screen.py L620</div>
+    <div class="rw">
+      <span class="ln">L620</span>if get_Sweep() or get_Normal()<br>
+      &nbsp;&nbsp;→ AdvancedSettingsGraphFunction() @ L622<br>
+      <span class="ln">L624</span>elif get_mainmeasurement()<br>
+      &nbsp;&nbsp;→ BrickletMeasurementGraphFunction() @ L627<br>
+      <span class="ln">L628</span>elif get_Calibrate()<br>
+      &nbsp;&nbsp;→ CalibrationScreen_GraphFunction() @ L630
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">→ BrickletMeasurementGraphFunction()</div>
+    <div class="ft">Measurement_Screen.py L1135</div>
+    <div class="rw">
+      <span class="ln">L627</span>called from DMT run()<br>
+      <span class="ln">L1135</span>def BrickletMeasurementGraphFunction
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">⏳ Poll view_graph flag</div>
+    <div class="ft">Measurement_Screen.py L1175</div>
+    <div class="rw">
+      <span class="ln">L1175</span>while not integrate.get_view_graph(): sleep(1)<br>
+      <span class="ln">L94</span>&nbsp;view_graph declared in integrate.py<br>
+      Set by BrickletThread @ L2684
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-ok">
+    <div class="fn">🔔 measurement_complete_signal.emit(True)</div>
+    <div class="ft">Measurement_Screen.py L1185</div>
+    <div class="rw">
+      <span class="ln">L1185</span>measurement_complete_signal.emit(True)<br>
+      <span class="ln">L1186</span>set_continue_measurement(False)<br>
+      <span class="ln">L1189</span>switch_to_sample_screen.emit(False,"SAMPLE1",1)
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">Cleanup flags &amp; loop</div>
+    <div class="ft">Measurement_Screen.py L638</div>
+    <div class="rw">
+      <span class="ln">L638</span>set_view_graph(False)<br>
+      <span class="ln">L639</span>set_view_graph1(False)<br>
+      <span class="ln">L640</span>set_mainmeasurement(False)<br>
+      <span class="ln">L641</span>set_stop_measurement_data_acq(False)<br>
+      <span class="ln">L643</span>set_Sweep_Measurement(False)<br>
+      <span class="ln">L644</span>set_Normal_Measurement(False)<br>
+      ↩ Loop back → wait next event
+    </div>
+  </div>
+
+</div><!-- /cb-dmt -->
+
+
+<!-- ── MeasurementScreen (MT) COLUMN ── -->
+<div class="cb cb-mt">
+
+  <div class="bx bx-act">
+    <div class="fn">BrickletMeasurementGraphFunction()</div>
+    <div class="ft">Measurement_Screen.py L1135</div>
+    <div class="rw">
+      <span class="ln">L1135</span>def BrickletMeasurementGraphFunction<br>
+      <span class="ln">L1136</span>print: function started<br>
+      <span class="ln">L1137</span>check_date_and_update()<br>
+      <span class="ln">L1249</span>def check_date_and_update
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-dec">
+    <div class="fn">🔀 EnablePresweep_Checkbox?</div>
+    <div class="ft">Measurement_Screen.py L1140</div>
+    <div class="rw">
+      <span class="ln">L1140</span>if shared_state.EnablePresweep_Checkbox:<br>
+      &nbsp;&nbsp;YES → Pre_Sweep_Measurment() @ L1145
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">Pre_Sweep_Measurment() [optional]</div>
+    <div class="ft">Measurement_Screen.py L1271</div>
+    <div class="rw">
+      <span class="ln">L1271</span>def Pre_Sweep_Measurment<br>
+      <span class="ln">L1145</span>called from BrickletMeasGraph<br>
+      <span class="ln">L1481</span>cube.StartDataAcq(ip, sampling_time+10)<br>
+      <span class="ln">L1496</span>cube.AbortMeasurement(ip)<br>
+      <span class="ln">L1658</span>cube.StartTransferMeasurementFile()
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">perform_dac_operations()</div>
+    <div class="ft">Measurement_Screen.py L1718</div>
+    <div class="rw">
+      <span class="ln">L1166</span>called from BrickletMeasGraph<br>
+      <span class="ln">L1718</span>def perform_dac_operations<br>
+      <span class="ln">L1682</span>generate_timestamped_filename()<br>
+      <span class="ln">L1737</span>if Enable_Bricklets: set temp log filepath<br>
+      <span class="ln">L1742</span>set_temperature_log_filepath(path)<br>
+      <span class="ln">L1743</span>set_temperature_log_active(True)<br>
+      SetDwell / Setd_step0 / Setg_step0<br>
+      ApplyDACChannels()<br>
+      <span class="ln">L1841</span>Load Vg_Vsd calibration (main/Sweep/Normal)<br>
+      Set DAC ch1–16 Vsd loop<br>
+      Set DAC ch17–32 Vg loop<br>
+      ApplyDACChannels()<br>
+      <span class="ln">L2004</span>set_measurement1Completed(True) [early path]<br>
+      Calculate sampling_time<br>
+      <span class="ln">L2153</span>if main OR (Sweep/Normal+Bricklet):
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">🔔 start_bricklet_event.set() ➜ BT</div>
+    <div class="ft">Measurement_Screen.py L2156</div>
+    <div class="rw">
+      <span class="ln">L2153</span>condition check (not Calibrate AND main/Bricklet)<br>
+      <span class="ln">L2156</span>integrate.start_bricklet_event.set()<br>
+      <span class="ln">L137</span>&nbsp;event declared in integrate.py<br>
+      Wakes BrickletThread to start T0
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">⏳ Wait Start_data_acquisition_event</div>
+    <div class="ft">Measurement_Screen.py L2162</div>
+    <div class="rw">
+      <span class="ln">L2162</span>Start_data_acquisition_event.wait(timeout=1)<br>
+      <span class="ln">L2169</span>Start_data_acquisition_event.clear()<br>
+      <span class="ln">L142</span>&nbsp;event declared in integrate.py<br>
+      Blocks until BrickletThread fires @ L1934
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-hw">
+    <div class="fn">🔬 cube.StartDataAcq()</div>
+    <div class="ft">Measurement_Screen.py L2184</div>
+    <div class="rw">
+      <span class="ln">L2183</span>if get_Sweep_Measurement():<br>
+      <span class="ln">L2184</span>&nbsp;StartDataAcq(ip, 2×sampling_time+3)<br>
+      <span class="ln">L2186</span>else: StartDataAcq(ip, sampling_time+3)<br>
+      Hardware data acquisition begins on device
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">⏳ Wait measurement_sleep_time</div>
+    <div class="ft">Measurement_Screen.py L2230</div>
+    <div class="rw">
+      <span class="ln">L2230</span>while time.time() &lt; t0 + sleep_time: (0.1s ticks)<br>
+      <span class="ln">L2239</span>check Cancel/eth_down → AbortMeasurement()
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">⏳ Wait stop_measurement_data_acq</div>
+    <div class="ft">Measurement_Screen.py L2257</div>
+    <div class="rw">
+      <span class="ln">L2256</span>if main OR (Sweep/Normal + Bricklet):<br>
+      <span class="ln">L2257</span>while not get_stop_measurement_data_acq(): wait<br>
+      <span class="ln">L114</span>&nbsp;declared in integrate.py<br>
+      Set by BrickletThread @ L2240 (T3 end)
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-hw">
+    <div class="fn">cube.AbortMeasurement()</div>
+    <div class="ft">Measurement_Screen.py L2274</div>
+    <div class="rw">
+      <span class="ln">L2274</span>rc = cube.AbortMeasurement(ip_address)<br>
+      Stops data capture on hardware
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">⏳ Wait Bricklet_T3Stage_Complete</div>
+    <div class="ft">Measurement_Screen.py L2292</div>
+    <div class="rw">
+      <span class="ln">L2292</span>loop: get_Bricklet_T3Stage_Complete() (10s timeout)<br>
+      <span class="ln">L2300</span>set_Bricklet_T3Stage_Complete(False) on timeout<br>
+      <span class="ln">L2306</span>set_Bricklet_T3Stage_Complete(False) [final]<br>
+      Set by BrickletThread @ L2284
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">set_measurement1Completed(True)</div>
+    <div class="ft">Measurement_Screen.py L2319</div>
+    <div class="rw">
+      <span class="ln">L2319</span>integrate.set_measurement1Completed(True)<br>
+      <span class="ln">L100</span>&nbsp;declared in integrate.py<br>
+      Signals BT: file transfer safe to proceed
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-hw">
+    <div class="fn">📁 StartTransferMeasurementFile() — SCP</div>
+    <div class="ft">Measurement_Screen.py L2339</div>
+    <div class="rw">
+      <span class="ln">L2339</span>cube.StartTransferMeasurementFile(ip, rawtext_path)<br>
+      SCP: Pi device → PC<br>
+      <span class="ln">L2361</span>set_temperature_log_active(False)<br>
+      <span class="ln">L2362</span>update_rawtext_header(rawtext_file_path)<br>
+      <span class="ln">L2368</span>if main/Sweep/Normal: write CSV entry
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">update_rawtext_header()</div>
+    <div class="ft">Measurement_Screen.py L2519</div>
+    <div class="rw">
+      <span class="ln">L2519</span>def update_rawtext_header<br>
+      <span class="ln">L2362</span>called after file transfer<br>
+      Write Vg / Vsd / SN / SampleID into binary header
+    </div>
+  </div>
+
+</div><!-- /cb-mt -->
+
+
+<!-- ── BrickletThread COLUMN ── -->
+<div class="cb cb-bt">
+
+  <div class="bx bx-thr">
+    <div class="fn">🚀 BrickletThread()</div>
+    <div class="ft">integrate.py L2579</div>
+    <div class="rw">
+      <span class="ln">L478</span>&nbsp;class BrickletWorker<br>
+      <span class="ln">L486</span>&nbsp;BrickletWorker.run() → calls BrickletThread()<br>
+      <span class="ln">L488</span>&nbsp;self.integrate.BrickletThread(measurement_screen)<br>
+      <span class="ln">L2579</span>def BrickletThread<br>
+      <span class="ln">L2582</span>def emit_status helper<br>
+      Persistent loop in dedicated QThread
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">⏳ Wait start_bricklet_event</div>
+    <div class="ft">integrate.py L2590–2596</div>
+    <div class="rw">
+      <span class="ln">L2590</span>start_bricklet_event.clear()<br>
+      <span class="ln">L2596</span>start_bricklet_event.wait(timeout=1)<br>
+      <span class="ln">L137</span>&nbsp;event declared in integrate.py<br>
+      Blocks until MT fires @ MS L2156<br>
+      <span class="ln">L2615</span>start_bricklet_event.clear() after received
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">🌡 Check Temperature (if enabled)</div>
+    <div class="ft">integrate.py L2625</div>
+    <div class="rw">
+      <span class="ln">L2622</span>if get_enable_bricklet():<br>
+      <span class="ln">L2623</span>&nbsp;if Flag_Sample_Heat AND Flag_Coil_Heat:<br>
+      <span class="ln">L2627</span>&nbsp;&nbsp;wait_for_required_temp_to_set()<br>
+      <span class="ln">L1354</span>&nbsp;&nbsp;def wait_for_required_temp_to_set<br>
+      Blocks until thermocouples reach target temp
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-dec">
+    <div class="fn">🔀 get_t2()&gt;0 AND not Normal/Sweep?</div>
+    <div class="ft">integrate.py L2640</div>
+    <div class="rw">
+      <span class="ln">L2640</span>if get_t2()&gt;0 and not Normal and not Sweep:<br>
+      &nbsp;&nbsp;YES → start_nitrogen_and_voc_flow() @ L2643<br>
+      &nbsp;&nbsp;NO  → start_nitrogen_flow() @ L2647
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <!-- T0 -->
+  <div class="bx bx-ph">
+    <div class="fn">━━ T0 PHASE — Hardware Prep ━━</div>
+    <div class="ft">integrate.py — start_nitrogen_and_voc_flow() L1817</div>
+    <div class="rw">
+      <span class="ln">L1817</span>def start_nitrogen_and_voc_flow<br>
+      <span class="ln">L1843</span>if get_enable_bricklet(): sv1_backflush_relay() check<br>
+      <span class="ln">L1851</span>sv1_backflush_relay() — read backflush state<br>
+      <span class="ln">L1854</span>sv1_backflush_off() — close backflush<br>
+      <span class="ln">L1858</span>if not at VIAL_UPPER_LIMIT:<br>
+      <span class="ln">L1861</span>&nbsp;vial_base_raise(VIAL_UPPER_LIMIT)<br>
+      <span class="ln">L1877</span>Exhaust_Solenoid_Valve_on(sv1_relay) → OPEN<br>
+      <span class="ln">L1035</span>def Exhaust_Solenoid_Valve_on<br>
+      <span class="ln">L1887</span>MFC_open_nitrogen_flow() — N2 MFC1+MFC3<br>
+      <span class="ln">L841</span>&nbsp;def MFC_open_nitrogen_flow<br>
+      <span class="ln">L1890</span>MFC_open_VOC_flow() — VOC MFC2+MFC4<br>
+      <span class="ln">L879</span>&nbsp;def MFC_open_VOC_flow<br>
+      <span class="ln">L1918</span>VOC_Solenoid_Valve_off() → CLOSED<br>
+      <span class="ln">L1053</span>def VOC_Solenoid_Valve_off
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">🔔 Start_timer_event.set() + Start_data_acquisition_event.set()</div>
+    <div class="ft">integrate.py L1932 / L1934</div>
+    <div class="rw">
+      <span class="ln">L1929</span>set_meas_max_count(T1+T2+T3)<br>
+      <span class="ln">L1932</span>Start_timer_event.set() → Timer thread<br>
+      <span class="ln">L138</span>&nbsp;event declared in integrate.py<br>
+      <span class="ln">L1934</span>Start_data_acquisition_event.set() → MT<br>
+      <span class="ln">L142</span>&nbsp;event declared in integrate.py<br>
+      Unblocks: timer UI countdown + MT StartDataAcq
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <!-- T1 -->
+  <div class="bx bx-ph">
+    <div class="fn">━━ T1 PHASE — Pure Nitrogen Flow ━━</div>
+    <div class="ft">integrate.py L1953</div>
+    <div class="rw">
+      <span class="ln">L1953</span>tnow = datetime.now()<br>
+      <span class="ln">L1955</span>while datetime.now() &lt; tnow + T1: (1s ticks)<br>
+      &nbsp;&nbsp;Check MFC N2 + VOC flow readings<br>
+      <span class="ln">L1992</span>&nbsp;&nbsp;if Cancel: return<br>
+      <span class="ln">L1995</span>&nbsp;&nbsp;if not continue_measurement: return<br>
+      N2 only flowing — VOC solenoid CLOSED
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <!-- T2 -->
+  <div class="bx bx-ph">
+    <div class="fn">━━ T2 PHASE — VOC Exposure (if T2&gt;0) ━━</div>
+    <div class="ft">integrate.py L2021</div>
+    <div class="rw">
+      <span class="ln">L2021</span>if get_t2() &gt; 0:<br>
+      <span class="ln">L2053</span>&nbsp;VOC_Solenoid_Valve_on(sv1_relay) → OPEN<br>
+      <span class="ln">L1044</span>&nbsp;def VOC_Solenoid_Valve_on<br>
+      <span class="ln">L2061</span>&nbsp;MFC_VOC_argon_flow_mvp() all VOC MFCs<br>
+      <span class="ln">L926</span>&nbsp;&nbsp;def MFC_VOC_argon_flow_mvp<br>
+      &nbsp;&nbsp;N2 + VOC flowing simultaneously<br>
+      <span class="ln">L2083</span>&nbsp;while datetime.now() &lt; tnow + T2: (1s ticks)<br>
+      <span class="ln">L2109</span>&nbsp;if Cancel: return<br>
+      T2 seconds elapsed →
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <!-- T3 -->
+  <div class="bx bx-ph">
+    <div class="fn">━━ T3 PHASE — Purge / Recovery ━━</div>
+    <div class="ft">integrate.py L2125</div>
+    <div class="rw">
+      <span class="ln">L2125</span>VOC_Solenoid_Valve_off() → CLOSE<br>
+      <span class="ln">L2134</span>MFC_open_nitrogen_flow() back to pure N2<br>
+      <span class="ln">L2164</span>set_transfer_rawtext_file(True)<br>
+      <span class="ln">L113</span>&nbsp;declared in integrate.py<br>
+      <span class="ln">L2167</span>if get_enable_bricklet(): T3 timer loop<br>
+      <span class="ln">L2169</span>&nbsp;while datetime.now() &lt; tnow + T3: (1s ticks)<br>
+      <span class="ln">L2191</span>&nbsp;if Cancel: return<br>
+      else: while sleep T3 seconds<br>
+      T3 seconds elapsed →
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">🔔 set_stop_measurement_data_acq(True) ➜ MT</div>
+    <div class="ft">integrate.py L2240</div>
+    <div class="rw">
+      <span class="ln">L2240</span>set_stop_measurement_data_acq(True)<br>
+      <span class="ln">L706</span>&nbsp;def set_stop_measurement_data_acq<br>
+      Unblocks MT wait loop @ MS L2257
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-hw">
+    <div class="fn">T3 After — Hardware Cleanup</div>
+    <div class="ft">integrate.py L2248</div>
+    <div class="rw">
+      <span class="ln">L2248</span>set_mfc_zero() — all serial_ports<br>
+      <span class="ln">L994</span>&nbsp;def set_mfc_zero<br>
+      <span class="ln">L2264</span>Exhaust_Solenoid_Valve_off() → CLOSE<br>
+      <span class="ln">L1040</span>def Exhaust_Solenoid_Valve_off<br>
+      <span class="ln">L2284</span>set_Bricklet_T3Stage_Complete(True) ➜ MT<br>
+      <span class="ln">L2286</span>while not get_measurement1Completed(): wait (10s max)<br>
+      <span class="ln">L2302</span>Exhaust_Solenoid_Valve_off() again<br>
+      <span class="ln">L2304</span>set_measurement1Completed(False)
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-hw">
+    <div class="fn">Auto Backflush (if enabled)</div>
+    <div class="ft">integrate.py L2316</div>
+    <div class="rw">
+      <span class="ln">L2316</span>vial_base_raise(VIAL_1_3RD_POSITION)<br>
+      <span class="ln">L2326</span>sv1_backflush_on(sv1_relay) → OPEN<br>
+      <span class="ln">L2329</span>time.sleep(N2_Period)<br>
+      <span class="ln">L2336</span>sv1_backflush_off(sv1_relay) → CLOSE<br>
+      <span class="ln">L2340</span>vial_base_raise(VIAL_UPPER_LIMIT)<br>
+      return True
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">clear_bricklets()</div>
+    <div class="ft">integrate.py L2535</div>
+    <div class="rw">
+      <span class="ln">L2679</span>clear_bricklets() called in BrickletThread<br>
+      <span class="ln">L2535</span>def clear_bricklets<br>
+      <span class="ln">L2541</span>Exhaust_Solenoid_Valve_off()<br>
+      <span class="ln">L2545</span>set_mfc_zero MFC1<br>
+      <span class="ln">L2550</span>set_mfc_zero MFC2<br>
+      <span class="ln">L2555</span>set_mfc_zero MFC3<br>
+      <span class="ln">L2560</span>set_mfc_zero MFC4<br>
+      <span class="ln">L2566</span>sv1_backflush_off()<br>
+      <span class="ln">L2573</span>vial_base disabled
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">🔔 set_view_graph(True) ➜ DMT</div>
+    <div class="ft">integrate.py L2682–2684</div>
+    <div class="rw">
+      <span class="ln">L2680</span>if EnableBricklets AND (Normal or Sweep):<br>
+      <span class="ln">L2682</span>&nbsp;set_view_graph1(True)<br>
+      <span class="ln">L2684</span>else: set_view_graph(True)<br>
+      <span class="ln">L626</span>&nbsp;def set_view_graph in integrate.py<br>
+      Unblocks DMT poll @ MS L1175
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-thr">
+    <div class="fn">🔁 Loop back — wait next event</div>
+    <div class="ft">integrate.py L2590</div>
+    <div class="rw">
+      <span class="ln">L2590</span>start_bricklet_event.clear()<br>
+      Ready for next measurement cycle
+    </div>
+  </div>
+
+</div><!-- /cb-bt -->
+
+
+<!-- ── Timer & Temp COLUMN ── -->
+<div class="cb cb-tmr">
+
+  <div class="bx bx-thr">
+    <div class="fn">🚀 Meas_timer_counter_thread()</div>
+    <div class="ft">integrate.py L1122</div>
+    <div class="rw">
+      <span class="ln">L494</span>&nbsp;class TimerWorker<br>
+      <span class="ln">L502</span>&nbsp;TimerWorker.run() calls this<br>
+      <span class="ln">L504</span>&nbsp;self.integrate.Meas_timer_counter_thread()<br>
+      <span class="ln">L1122</span>def Meas_timer_counter_thread<br>
+      Persistent loop in QThread
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-evt">
+    <div class="fn">⏳ Wait Start_timer_event</div>
+    <div class="ft">integrate.py L1126</div>
+    <div class="rw">
+      <span class="ln">L1126</span>Start_timer_event.wait(timeout=1)<br>
+      <span class="ln">L138</span>&nbsp;event declared in integrate.py<br>
+      Set by BrickletThread @ L1932 / L1492
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">Count up every 1 second</div>
+    <div class="ft">integrate.py L1129</div>
+    <div class="rw">
+      <span class="ln">L1129</span>Start_timer_event.clear()<br>
+      <span class="ln">L1130</span>cctime = int(time.time())<br>
+      <span class="ln">L1132</span>if T2&gt;0 and enable_bricklet: max_count +8<br>
+      <span class="ln">L1134</span>else: max_count = get_meas_max_count()<br>
+      <span class="ln">L1137</span>while int(time.time()) ≤ cctime + max_count:<br>
+      <span class="ln">L1144</span>&nbsp;&nbsp;Timer_status_signal.emit("N Sec")<br>
+      <span class="ln">L1147</span>&nbsp;&nbsp;time.sleep(1)
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">Disable controls near end</div>
+    <div class="ft">integrate.py L1140</div>
+    <div class="rw">
+      <span class="ln">L1140</span>if not get_continue_measurement():<br>
+      <span class="ln">L1147</span>&nbsp;&nbsp;if T2==0 and near end:<br>
+      <span class="ln">L1149</span>&nbsp;&nbsp;&nbsp;&nbsp;control_update_signal.emit("disable_controls")<br>
+      <span class="ln">L1151</span>set_meas_max_count(0) when complete<br>
+      ↩ Loop back → wait next Start_timer_event
+    </div>
+  </div>
+
+  <div style="height:35px"></div>
+
+  <div class="bx bx-thr">
+    <div class="fn">🌡 Temperature_Monitor_Worker_thread()</div>
+    <div class="ft">integrate.py L1187</div>
+    <div class="rw">
+      <span class="ln">L508</span>&nbsp;class TemperatureMonitorWorker<br>
+      <span class="ln">L516</span>&nbsp;TempMonitorWorker.run() calls this<br>
+      <span class="ln">L518</span>&nbsp;self.integrate.Temperature_Monitor_Worker_thread()<br>
+      <span class="ln">L1187</span>def Temperature_Monitor_Worker_thread<br>
+      Runs continuously — no event trigger needed
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-hw">
+    <div class="fn">Read sensors / PID heater control</div>
+    <div class="ft">integrate.py L1274</div>
+    <div class="rw">
+      <span class="ln">L1062</span>def check_for_sample_temp(controller)<br>
+      <span class="ln">L1274</span>check_for_sample_temp() — PID sample heater<br>
+      <span class="ln">L1086</span>def check_for_tubing_temp(controller)<br>
+      <span class="ln">L1285</span>check_for_tubing_temp() — PID coil heater<br>
+      <span class="ln">L1109</span>def check_for_air_temp()<br>
+      <span class="ln">L1299</span>check_for_air_temp()<br>
+      <span class="ln">L1307</span>check_for_air_humidity()<br>
+      <span class="ln">L1315</span>check_for_air_pressure()<br>
+      HeaterController PID → dual_relay ON/OFF
+    </div>
+  </div>
+  <div class="arr">▼</div>
+
+  <div class="bx bx-act">
+    <div class="fn">Log data &amp; emit UI signals</div>
+    <div class="ft">integrate.py L1334</div>
+    <div class="rw">
+      <span class="ln">L1334</span>log_temperature_data() if log_active<br>
+      <span class="ln">L372</span>&nbsp;def log_temperature_data<br>
+      Emit: sample_temperature_update_signal<br>
+      Emit: coil_temperature_update_signal<br>
+      Emit: aircube_temperature_update_signal<br>
+      Only visible on Settings screen<br>
+      time.sleep(0.5) → repeat loop
+    </div>
+  </div>
+
+</div><!-- /cb-tmr -->
+
+</div><!-- /grid -->
+</div><!-- /overflow -->
+
+
+<!-- ════════ REFERENCE TABLE ════════ -->
+<div class="tbl-wrap">
+<p class="sec-ttl">🔗 KEY EVENTS, SIGNALS &amp; VARIABLES — LINE NUMBER CROSS REFERENCE</p>
+<table>
+<thead>
+  <tr>
+    <th>Event / Variable / Signal</th>
+    <th>Declared</th>
+    <th>SET at line(s)</th>
+    <th>WAITED / READ at line(s)</th>
+    <th>Purpose</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="ev">startmeasurement1_event</td>
+    <td class="lc">integrate.py L139</td>
+    <td class="lc">MainWindow.py L909</td>
+    <td class="lc">Measurement_Screen.py L546</td>
+    <td class="dc">Button click → wakes DeviceMeasurementThread run loop</td>
+  </tr>
+  <tr>
+    <td class="ev">start_bricklet_event</td>
+    <td class="lc">integrate.py L137</td>
+    <td class="lc">Measurement_Screen.py L2156</td>
+    <td class="lc">integrate.py L2596</td>
+    <td class="dc">DAC config done → wakes BrickletThread to start T0 gas flow</td>
+  </tr>
+  <tr>
+    <td class="ev">Start_data_acquisition_event</td>
+    <td class="lc">integrate.py L142</td>
+    <td class="lc">integrate.py L1934 (N2+VOC flow)<br>integrate.py L1498 (N2 only flow)</td>
+    <td class="lc">Measurement_Screen.py L2162</td>
+    <td class="dc">Gas flow ready → MT calls cube.StartDataAcq()</td>
+  </tr>
+  <tr>
+    <td class="ev">Start_timer_event</td>
+    <td class="lc">integrate.py L138</td>
+    <td class="lc">integrate.py L1932 (N2+VOC)<br>integrate.py L1492 (N2 only)</td>
+    <td class="lc">integrate.py L1126</td>
+    <td class="dc">T0→T1 transition → starts UI countdown timer</td>
+  </tr>
+  <tr>
+    <td class="ev">stop_measurement_data_acq</td>
+    <td class="lc">integrate.py L114</td>
+    <td class="lc">integrate.py L2240 (N2+VOC T3 end)<br>integrate.py L1714 (N2 only T3 end)</td>
+    <td class="lc">Measurement_Screen.py L2257</td>
+    <td class="dc">T3 complete → MT exits wait loop, calls AbortMeasurement()</td>
+  </tr>
+  <tr>
+    <td class="ev">Bricklet_T3Stage_Complete</td>
+    <td class="lc">SharedState</td>
+    <td class="lc">integrate.py L2284</td>
+    <td class="lc">Measurement_Screen.py L2292</td>
+    <td class="dc">MFCs zero + exhaust closed → safe for SCP file transfer</td>
+  </tr>
+  <tr>
+    <td class="ev">measurement1Completed</td>
+    <td class="lc">integrate.py L100</td>
+    <td class="lc">Measurement_Screen.py L2319 (set True)<br>integrate.py L2304 (reset False)</td>
+    <td class="lc">integrate.py L2286</td>
+    <td class="dc">BT waits MT to confirm "file transferred" before auto-backflush</td>
+  </tr>
+  <tr>
+    <td class="ev">view_graph</td>
+    <td class="lc">integrate.py L94</td>
+    <td class="lc">integrate.py L2684</td>
+    <td class="lc">Measurement_Screen.py L1175</td>
+    <td class="dc">All phases complete → DMT emits measurement_complete_signal(True)</td>
+  </tr>
+  <tr>
+    <td class="ev">view_graph1</td>
+    <td class="lc">integrate.py L95</td>
+    <td class="lc">integrate.py L2682</td>
+    <td class="lc">Measurement_Screen.py L1234</td>
+    <td class="dc">Same as view_graph but for Sweep/Normal (AdvancedSettings) path</td>
+  </tr>
+  <tr>
+    <td class="ev">transfer_rawtext_file</td>
+    <td class="lc">integrate.py L113</td>
+    <td class="lc">integrate.py L2164 (N2+VOC)<br>integrate.py L1625 (N2 only)</td>
+    <td class="lc">internal flag</td>
+    <td class="dc">T3 end: signals file ready for SCP transfer</td>
+  </tr>
+  <tr>
+    <td class="ev">measurement_complete_signal</td>
+    <td class="lc">Measurement_Screen.py L655</td>
+    <td class="lc">MS.py L1185 (True) / L1171 (False)</td>
+    <td class="lc">→ L698 connect → L1080 handle_measurement_completion</td>
+    <td class="dc">Final: updates TerminalDialog, OK button enabled</td>
+  </tr>
+  <tr>
+    <td class="ev">switch_to_sample_screen</td>
+    <td class="lc">Measurement_Screen.py L659</td>
+    <td class="lc">Measurement_Screen.py L1189</td>
+    <td class="lc">→ L703 connect → L749 handle_switch_to_sample</td>
+    <td class="dc">Navigate to Sample screen and plot measurement graph</td>
+  </tr>
+  <tr>
+    <td class="ev">MFC_open_nitrogen_flow()</td>
+    <td class="lc">integrate.py L841</td>
+    <td class="lc">Called: L1484, L1887, L2134</td>
+    <td class="lc">—</td>
+    <td class="dc">Open N2 MFC1+MFC3 to Argon_flow_rate — T0, T3, N2-only path</td>
+  </tr>
+  <tr>
+    <td class="ev">MFC_open_VOC_flow()</td>
+    <td class="lc">integrate.py L879</td>
+    <td class="lc">Called: L1890</td>
+    <td class="lc">—</td>
+    <td class="dc">Open VOC MFC2+MFC4 during T0 prep (solenoid still closed)</td>
+  </tr>
+  <tr>
+    <td class="ev">MFC_VOC_argon_flow_mvp()</td>
+    <td class="lc">integrate.py L926</td>
+    <td class="lc">Called: L2061</td>
+    <td class="lc">—</td>
+    <td class="dc">Set VOC MFC flow rate during T2 VOC exposure phase</td>
+  </tr>
+  <tr>
+    <td class="ev">VOC_Solenoid_Valve_on/off()</td>
+    <td class="lc">integrate.py L1044 / L1053</td>
+    <td class="lc">ON: L2053 (T2) &nbsp; OFF: L1918 (T0 prep), L2125 (T3)</td>
+    <td class="lc">—</td>
+    <td class="dc">Open/close VOC gas path solenoid valve</td>
+  </tr>
+  <tr>
+    <td class="ev">Exhaust_Solenoid_Valve_on/off()</td>
+    <td class="lc">integrate.py L1035 / L1040</td>
+    <td class="lc">ON: L1877, L1457 &nbsp; OFF: L2264, L2302</td>
+    <td class="lc">—</td>
+    <td class="dc">Open exhaust valve during measurement, close after cleanup</td>
+  </tr>
+  <tr>
+    <td class="ev">set_mfc_zero()</td>
+    <td class="lc">integrate.py L994</td>
+    <td class="lc">L2248, L1719, L2545–L2560 (clear_bricklets)</td>
+    <td class="lc">—</td>
+    <td class="dc">Set MFC to 0% flow at T3 end and in clear_bricklets</td>
+  </tr>
+  <tr>
+    <td class="ev">vial_base_raise()</td>
+    <td class="lc">integrate.py L36 (import)</td>
+    <td class="lc">L1861 (UPPER_LIMIT), L2316 (1_3RD), L2340 (backflush)</td>
+    <td class="lc">—</td>
+    <td class="dc">Stepper motor: position vial base for measurement or backflush</td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+</body>
+</html>

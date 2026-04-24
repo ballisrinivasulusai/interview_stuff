@@ -1,0 +1,106 @@
+{
+    "airQ": {
+            "UID": "2anG",
+            "Callback_Period": 1000,
+            "Device_Name": "Air Quality Sensor"
+	},
+	
+    "dual_gen": {
+            "UID": "UhS",
+            "Number_of_relay": 2,
+            "Device_Name": "Dual Generator 1"
+    },
+
+    "dual_relay": { 
+            "UID": "UaD",
+            "Number_of_relay": 2,
+            "Device_Name": "Dual Generator 2"
+    },   
+
+    "N2_Gas": {
+        "N2_Gas_UID": "SRX",
+        "N2_GAS_PWM_FREQUENCY": 1000,
+		"N2_GAS_ACCELERATION": 10000,
+		"N2_GAS_DECELERATION": 10000,
+		"N2_GAS_VELOCITY": 32767,
+		"N2_GAS_FREQ_STEP": 1000,
+        "N2_Gas_Device_Name": "N2 Gas Sensor"
+    },
+	
+    "MFC": {
+        "MFC1": {
+            "UID": "28Du",
+            "Device_Name": "MFC 1"
+        },
+        "MFC2": {
+            "UID": "28Do",
+            "Device_Name": "MFC 2"
+        },
+        "MFC3": {
+            "UID": "28CM",
+            "Device_Name": "MFC 3"
+        },
+        "MFC4": {
+            "UID": "28Dw",
+            "Device_Name": "MFC 4"
+        }
+    },
+
+    "solenoid": {
+            "UID": "2f3R",
+            "Number_of_relay": 4,
+            "Device_Name": "Solenoid Valve 1"
+    },
+	
+    "Thermocouple": {
+        "Thermocouple1": {
+            "UID": "29Hn",
+            "Device_Name": "Thermocouple 1"
+        },
+        "Thermocouple2": {
+            "UID": "29H8",
+            "Device_Name": "Thermocouple 2"
+        }        
+    },
+
+    "Master_Brick": {
+        "Master_Brick1": {
+            "UID": "6DyUq1",
+            "Device_Name": "Master Brick 1"
+        },
+        "Master_Brick2": {
+            "UID": "6RrfeQ",
+            "Device_Name": "Master Brick 2"
+        },
+        "Master_Brick3": {
+            "UID": "6mbEQb",
+            "Device_Name": "Master Brick 3"
+        }        
+    },
+
+    "vialbase": {
+        "Vial_Base_UID": "2akw",
+
+        "VIAL_STEPS_PER_TURN": 200,
+        "VIAL_LEAD_SCREW_PITCH": 4,
+        "VIAL_STEP_RESOLUTION": 256,
+
+        "VIAL_STEPS_PER_MM": 12800,
+
+        "VIAL_UPPER_LIMIT": -1260000,
+        "VIAL_LOWER_LIMIT": 0,
+	"VIAL_1_3RD_POSITION": -1000000,
+
+        "VIAL_MOTOR_CONFIG": {
+            "max_velocity": 50000,
+            "acceleration": 50000,
+            "deceleration": 50000,
+            "run_current": 800,
+            "standstill_current": 200,
+            "power_down_time": 1000,
+            "stealth_threshold": 500,
+            "coolstep_threshold": 500,
+            "classic_threshold": 1000
+        }
+    }
+}

@@ -1,0 +1,147 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  message diagresp dr;
+}
+
+  
+  
+on message diagreq
+  {
+    if(this.byte(1)==0x10 && this.byte(2)==0x1)
+    {
+      
+      dr.byte(0)=0x06;
+      dr.byte(1)=0x50;
+      dr.byte(2)=0x01;
+      dr.byte(3)=0x00;
+      dr.byte(4)=0x0A;
+      dr.byte(5)=0x01;
+      dr.byte(6)=0x64;
+      output(dr);
+    }
+    
+     
+    if(this.byte(1)==0x10 && this.byte(2)==0x2)
+    {
+      
+      dr.byte(0)=0x06;
+      dr.byte(1)=0x50;
+      dr.byte(2)=0x02;
+      dr.byte(3)=0x00;
+      dr.byte(4)=0x0A;
+      dr.byte(5)=0x01;
+      dr.byte(6)=0x64;
+      output(dr);
+    }
+    
+     
+    if(this.byte(1)==0x10 && this.byte(2)==0x3)
+    {
+      
+      dr.byte(0)=0x06;
+      dr.byte(1)=0x50;
+      dr.byte(2)=0x03;
+      dr.byte(3)=0x00;
+      dr.byte(4)=0x0A;
+      dr.byte(5)=0x01;
+      dr.byte(6)=0x64;
+      output(dr);
+    }
+    
+     
+    if(this.byte(1)==0x11 && this.byte(2)==0x1)
+    {
+      
+      dr.byte(0)=0x02;
+      dr.byte(1)=0x51;
+      dr.byte(2)=0x01;
+      output(dr);
+    }
+    
+     
+//    if(this.byte(1)==0x11 && this.byte(2)==0x2)
+//    {
+//      
+//      dr.byte(0)=0x02;
+//      dr.byte(1)=0x51;
+//      dr.byte(2)=0x02;
+//      output(dr);
+//    }
+//     
+//    if(this.byte(1)==0x11 && this.byte(2)==0x3)
+//    {
+//      
+//      dr.byte(0)=0x02;
+//      dr.byte(1)=0x51;
+//      dr.byte(2)=0x03;
+//      output(dr);
+//    }
+    
+     
+//    if(this.byte(1)==0x19 && this.byte(2)==0x1)
+//    {
+//      
+//      dr.byte(0)=0x02;
+//      dr.byte(1)=0x59;
+//      dr.byte(2)=0x01;
+//      output(dr);
+//    }
+    
+     
+    if(this.byte(1)==0x19 && this.byte(2)==0x2)
+    {
+      
+      dr.byte(0)=0x07;
+      dr.byte(1)=0x59;
+      dr.byte(2)=0x02;
+      dr.byte(3)=0xFF;
+      dr.byte(4)=0xC1;
+      dr.byte(5)=0x40;
+      dr.byte(6)=0x00;
+      dr.byte(7)=0x2F;
+      output(dr);
+    }
+    
+     
+    if(this.byte(1)==0x19 && this.byte(2)==0x4)
+    {
+      
+      dr.byte(0)=0x59;
+      dr.byte(1)=0x04;
+      output(dr);
+    }
+    
+    
+    
+    if(this.byte(1)==0x27 && this.byte(2)==0x1)
+    {
+      
+      dr.byte(0)=0x67;
+      dr.byte(1)=0x01;
+      dr.byte(3)=0x66;
+      dr.byte(4)=0xED;
+      dr.byte(5)=0x22;
+      dr.byte(6)=0x5B;
+      output(dr);
+    }
+    
+    
+     if(this.byte(1)==0x31 && this.byte(2)==0x1)
+    {
+      
+      dr.byte(0)=0x71;
+      dr.byte(1)=0x01;
+      dr.byte(3)=0x20;
+      dr.byte(4)=0x00;
+      output(dr);
+    }
+}
+  
+  
+
