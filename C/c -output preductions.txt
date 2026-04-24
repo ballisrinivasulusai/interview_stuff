@@ -1,0 +1,670 @@
+//1]
+
+#include<stdio.h>
+void main()
+{
+
+        int i=300, j=600;
+        char *p[2]={&i,&j};              //p is an array of 2 character pointer
+        short int **q=p+1;               //q 2 time deref-> short int data, 1 time deref short int data's address
+
+        p[1][1]=0;
+
+        printf("%d",**q);
+}
+
+//2]
+#include<stdio.h>
+void main()
+{
+
+        int a[5]={10,20,30,40};
+        char *p[3]={a+2,a+1,a};              //p is an array of 3 character pointer
+        short int **q=p+1;
+        ++*q;
+
+        printf("%d\n",q[1][1]);
+        printf("%d\n",q[0][-1]);
+}
+~   
+//3]
+#include<stdio.h>
+void main()
+{
+        int i=300,j=400;
+
+        char *p=&j;             
+        short int **q=&p;               
+        *q=&i;
+        ++*q; 
+        *--*q=*(p+1);
+
+        printf("%d\n",**q);
+}
+
+//4]
+#include<stdio.h>
+void main()
+{
+        int a[5]={10,20,30,40,50};
+
+        char *p=&a[1];
+        short int *q=&a[4];
+        short int **s=&p;
+        short int **b=&q;
+
+        printf("%d\n",*b-*s);
+}
+
+//5]
+#include<stdio.h>
+void main()
+{
+        int i=10;
+
+        int *p=i;
+        char **q=&p;
+        printf("%d\n",*q+1);
+        printf("%d\n",**q);
+}
+~  
+//6]
+#include<stdio.h>
+void main()
+{
+        int i=300, j=322;
+        short int *p=&i;
+        char **q=&p;
+        short int ***r= &q;
+
+        ++**r;
+        printf("%d\n",p[-1]);
+        printf("%d\n",p[0]);
+}
+~     
+//7]
+#include<stdio.h>
+void main()
+{
+        int a[2][5]={{65,66,67},{49,50,51,52}};
+        short int (*p)[1]=a;
+
+        p[1][-1]=(a[1][0]<<8)|(a[1][1]);
+
+        printf("%d",**p);
+}
+~    
+//8]
+#include<stdio.h>
+void main()
+{
+        int a[2][5]={{65,66,67},{49,50,51,52}};
+        short int (*p)[1]=a;
+
+        p[1][-1]=(a[1][0]<<8)|(a[1][1]);
+
+        short int **q=a;
+        q[0][1]=(a[1][2]<<8)|(a[1][3]);
+
+        printf("%s",a);
+}
+
+//9]
+#include<stdio.h>
+void main()
+{
+        int a[2][5]={{65,66,67},{49,50,51,52}};
+        short int *q=a;
+
+        printf("%d\n",*q);
+        printf("%d\n",*(q+1));
+}
+
+//10]
+#include<stdio.h>
+void main()
+{
+        int i=0;
+        char a[3][10]={"ABCDE","PQRSTUV","123456"};
+        char *p[3]={a[0],a[1],a[2]};
+        char **q[3]={p,p+2,p+1};
+
+        for(i=1;a[1][i];i=i+2)
+                q[1][-1][i]=(48+i);
+
+        printf("%s",a[1]);
+}
+
+//11]
+#include<stdio.h>
+void main()
+{
+        int i=0;
+        char *p[3]={"ABCDE","PQRSTUV","12345"};
+
+        short int **q[3]={p+2,p+1,p};
+
+        ++*--*q;
+        printf("%s",**q);
+}
+
+//12]
+#include<stdio.h>
+void main()
+{
+        int a[6]={};
+        short int *p[3]={a+2,a+1,a};
+        p[2][1]=65|66<<8;
+        char *q=a+1;
+
+        short int **r=&q;
+        r[0][-2]=49|50<<8;
+
+        printf("%s",a);
+}
+
+//13]
+#include<stdio.h>
+void main()
+{
+        int a[5]={'A','B','C','D','E'};
+        char (*p)[2]=a+1;
+
+        short int *q=a+1;
+        *q=50;
+        p[0][1]=51;
+        p[1][0]=52;
+        p[1][1]=53;
+
+        printf("%s",a+1);
+}
+~
+//14]
+#include<stdio.h>
+void main()
+{
+        int i=0;
+        char a[3][10]={"ABCDE","PQRSTUV","123456"};
+        short int( *p)[3]=a;
+
+        p[2][2]=p[4][0];
+        printf("%s",a[1]);
+}
+~                                                                                                                                       
+~//15]
+#include<stdio.h>
+void main()
+{
+
+        int a[6]={10,20,30,40,50,60};
+        short int (*p)[2]=a;
+        p[1][-1]=258;                       // is same as p[0][1]
+
+        printf("%d %d",p[0][0],p[0][1]);
+}
+
+//16]
+#include<stdio.h>
+void main()
+{
+
+        char a[6]={10,20,30,40,50,60};
+        short int (*p)[2]=a;
+        p[1][-1]=258;                       // is same as p[0][1]
+
+        printf("%d %d",a[2],a[3]);
+}
+
+//17]
+#include<stdio.h>
+void main()
+{
+
+        short int *p[3]={"ABCDEF","PQRSTUV","123456"};           //read only section
+        char **q=p+1;
+        p[1][2]=**q;
+        printf("%s",p[1]);
+}
+
+//18]
+#include<stdio.h>
+void main()
+{
+
+        char p[3][8]={"ABCDEF","PQRSTUV","123456"};
+        char *q=p+1;
+        p[1][2]=*q;
+        printf("%s",p[1]);
+}
+//19]
+#include<stdio.h>
+void main()
+{
+        char a[10]={'1','2','3','4','5'};
+        int (*p)[3]=a;
+        printf("%d",*(p+5)-*p);
+}
+
+//20]
+#include<stdio.h>
+void main()
+{
+        short int *a[3]={1000,2000,4000};
+        printf("%d",*(a+2)-*a);
+}
+
+//21]
+#include<stdio.h>
+void main()
+{
+
+        int i=500,j=450,k=258;
+        short int *a[3]={&i,&j,&k};
+        char *p;
+        p=++*(a+2);
+        p[-1]=2;
+        printf("%d",k);
+}
+
+//22]
+#include<stdio.h>
+void main()
+{
+
+        int a[5]={1,2,3,4,5};
+        short int (*p)[4]=a;
+        printf("%p\n",a);
+        printf("%p\n",p+4);
+        printf("%p",*p+4);
+}
+
+//23]
+#include<stdio.h>
+void main()
+{
+        short int *p[3]={"ABCDE","PQRST","12345"};
+        p[1]="6789T";
+        printf("%s",p[1]+1);
+}
+
+//24]
+#include<stdio.h>
+void main()
+{
+        double a[5]={10,20,30,40,50};
+        char *p=a+1;
+        short int *q=p+20;
+        int **m=&p;
+        int **n=&q;
+        printf("%d",*n-*m);
+}
+
+//24]
+#include<stdio.h>
+void main()
+{
+        char **q=1000;
+
+        printf("%d",q+1);
+        printf("%d",**q);
+}
+
+//25]
+#include<stdio.h>
+void main()
+{
+        int i=400;
+        char *p=&i;
+        short int **q=&p;
+
+        *++*q=0;
+
+        printf("%d\n",**q);
+        printf("%d\n",q[0][-1]);
+        
+        q[0][-1]=**q;
+        printf("%d",**q);
+}
+
+//26]
+#include<stdio.h>
+void main()
+{
+        short int a[10]={0,2,0,4,5};
+        char *p=a+1;
+        int **q=&p;
+
+        printf("%d\n",q[0][2]);
+        --*q;
+        printf("%d\n",q[0][1]);
+}
+
+//27]
+#include<stdio.h>
+void main()
+{
+        char a[10]="ABCDEFGH";
+        short int (*p)[2]=a;
+        p[2][-2]=49;
+        printf("%s\n",a);
+}
+
+//28]
+#include<stdio.h>
+void main()
+{
+        int a[5]={10,20,30,40,50};
+
+        char (*p)[3]=a;
+        p[3][-4]=1;
+        printf("%d\n",a[1]);
+}
+
+//29]
+#include<stdio.h>
+void main()
+{
+
+        int i=350,j=450,k=550;
+        short int * p[3]={&i,&j,&k};
+        ++*(p+1);
+        printf("%d\n",p[1][-1]);
+        printf("%d\n",p[1][0]);
+}
+
+//30]
+#include<stdio.h>
+void main()
+{
+
+        int i=300,j=400,k=500;
+        short int * p[3]={&i,&j,&k};
+        char **q[3]={p+2,p+1,p};
+        *(q+1)=p+2;
+        q[1][-1][1]=0;
+
+        printf("%d\n",j);
+        printf("%d\n",q[1][-1][0]);
+}
+
+//31]
+#include<stdio.h>
+void main()
+{
+
+        int i=10;
+        int *p=i;
+
+        printf("%d\n",(char *)p+1);
+        printf("%d\n",p+1);
+}
+
+//32]
+#include<stdio.h>
+void main()
+{
+
+        int i=20;
+        short int *p=i;
+        int *q=i;
+        char *r=i;
+
+        printf("%d\n",p+1);
+        printf("%d\n",q+1);
+        printf("%d\n",r+1);
+}
+
+//33]
+#include<stdio.h>
+void main()
+{
+
+        int i=400;
+        char *p=&i;
+        ++p;
+        *p=0;
+
+        printf("%d\n",i);
+}
+
+//34]
+#include<stdio.h>
+void main()
+{
+        int i=500;
+        short int *p=&i;
+        ++p;
+        *(p-1)=256;
+
+        printf("%d %d\n",*p,i);
+}
+
+//35]
+#include<stdio.h>
+void main()
+{
+        int i=600;
+        short int *p=&i;
+        char *q=&i;
+        q=q+2;
+        *--q=1;
+
+        printf("%d \n",*p);
+}
+
+//36]
+#include<stdio.h>
+void main()
+{
+        char ch='F';
+        int *p=ch;
+
+        printf("%u \n",p);
+        printf("%u \n",&ch);
+        printf("%u \n",&ch+'F');
+        printf("%u \n",p+'F');
+}
+
+//37]
+#include<stdio.h>
+void main()
+{
+        double a[5]={10,20,30,40,50};
+
+        char *p=a+1;
+        short int *q=a+4;
+        printf("%lf\n",a[1]);
+        printf("%d\n",q-(short int *)p);
+        *p=q-(short int *)p;
+        printf("%lf",a[1]);
+}
+
+//38]
+#include<stdio.h>
+void main()
+{
+        int a[5]={10,20,30,40,50};
+
+        short int *p=a+1;
+        char *q=a;
+        ++p;
+        p[-3]=33;
+
+        printf("%d",*q);
+}
+
+//39]
+#include<stdio.h>
+void main()
+{
+        short int a[5]={1,2,3,4,5};
+        int *p=a;
+        *p=258;
+
+        printf("%d  %d\n",a[0],a[1]);
+}
+
+//40]
+#include<stdio.h>
+void main()
+{
+        int a[5]={1,2,3,4,5};
+        char *p=a+1;
+        ++p;
+
+        printf("%d \n",(*(&p))[5]);
+}
+
+//41]
+#include<stdio.h>
+void main()
+{
+        int a[5]={48,57,56};
+        int *p=a;
+        *p|=49<<8|50<<16;
+
+        printf("%s \n",a);
+}
+~ 
+//42]
+#include<stdio.h>
+void main()
+{
+        char a[8]="ABCD";
+        short int *p=a;
+        p[2]=49|50<<8;
+
+        printf("%s \n",a);
+}
+
+//43]
+#include<stdio.h>
+void main()
+{
+        char a[12]="ABCDCDE12345";
+        int *p=a+8;
+        p[-1]=0;
+        char *q=a;
+
+        printf("%s %s\n",p,q+2);
+}
+
+//44]
+#include<stdio.h>
+void main()
+{
+        extern double *p;
+        printf("%d\n",p+30);
+}
+double *p;
+~       
+
+//45]
+#include<stdio.h>
+int *p;
+void main()
+{
+        static int i;
+        if(i<5)
+        {
+                ++p;
+                ++i;
+                main();
+                printf("%d\n",p);
+        }
+}
+
+//46]
+#include<stdio.h>
+void main()
+{
+        int i=10;
+        char *p=i;
+        short int **q=&p;
+
+        printf("%d\n",p+1);
+        printf("%d\n",q+1);
+        printf("%d\n",*q+1);
+}
+
+//47]
+#include<stdio.h>
+void main()
+{
+        char s[10]="ABCDEPQ";
+        int *p=s;
+        short int **q=&p;
+
+        q[0][2]=50|49<<8;
+
+        printf("%s\n",s);
+}
+
+//48]
+#include<stdio.h>
+void main()
+{
+        int i=400;
+        short int *p=&i;
+        char **q=&p;
+        *++*q=2;
+        q[0][-1]=0;
+
+        printf("%d\n",i);
+}
+~ 
+
+~  
+~   
+
+
+
+~      
+~    
+~  
+~   
+~    
+
+
+~   
+~                                                                                                                                       
+~    
+~  
+~  
+
+~                                                                                                                                       
+~     
+
+
+~ 
+
+
+~                                                                                                                                       
+~  
+~     
+
+
+~                                                                                                                                       
+~  
+
+
+
+~    
+~     
+~                                                                                                                                       
+~        
+
+~                                                                                                                                       
+~                                                                                                                                       
+~                                                                                                                                       
+~             
+
+~       
+~      
+~  
+~       
+
+~                                                                                                                                       
+~                                                                                                                                                                                                                                                                              
+
+~   
