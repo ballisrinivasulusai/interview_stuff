@@ -1,0 +1,94 @@
+
+[INFO] [DEMO] [waveCloudApp.c:556] HTTP thread received HTTP response
+[INFO] [DEMO] [waveCloudApp.c:448] Main thread received HTTP response
+[INFO] [DEMO] [waveCloudApp.c:449] Response Headers:
+x-amz-id-2: 0TtoGF8kphzBSYBRISUsrkNXJqNLwfNor9an+FId1DhmsAD+vp/DJOh+y3QWTLdJFrqYtZTDdsV/is8CMXMyRg==
+x-amz-request-id: YEJXTP3G715NGM6E
+Date: Thu, 18 Apr 2024 05:55:26 GMT
+Last-Modified: Wed, 10 Apr 2024 13:03:59 GMT
+ETag: "179f955aeabaf4562cf50442f3a7b54b"
+x-amz-server-side-encryption: AES256
+Accept-Ranges: bytes
+Content-Range: bytes 0-44548095/44548096
+Content-Type: application/octet-stream
+Server: AmazonS3
+Content-Length: 44548096
+[INFO] [DEMO] [waveCloudApp.c:452] Response Status:
+206
+[INFO] [DEMO] [waveCloudApp.c:453] Response Body: [44548096]
+
+[INFO] [MQTT] [core_mqtt.c:2151] Disconnected from the broker.
+[INFO] [DEMO] [waveCloudApp.c:1763] OTA file download completed successfully.
+[INFO] [PKCS11] [core_pkcs11_mbedtls.c:1932] Successfully closed PKCS #11 session.
+[INFO] [PKCS11] [core_pkcs11_mbedtls.c:1446] PKCS #11 was successfully uninitialized.
+[INFO] [DEMO] [waveCloudApp.c:2156] Send success responce to communication handler
+[INFO] [DEMO] [waveCloudApp.c:2171] Job restart timer stop
+[INFO] [DEMO] [waveCloudApp.c:1435] Device job name [Alpha_P_bt_18]
+[INFO] [PKCS11] [core_pkcs11_mbedtls.c:1403] PKCS #11 successfully initialized.
+[INFO] [DEMO] [waveCloudApp.c:865] Establishing MQTT session with provisioned certificate...
+[INFO] [MQTT] [core_mqtt.c:885] Packet received. ReceivedBytes=2.
+[INFO] [MQTT] [core_mqtt_serializer.c:958] CONNACK session present bit set.
+[INFO] [MQTT] [core_mqtt_serializer.c:912] Connection accepted.
+[INFO] [MQTT] [core_mqtt.c:1565] Received MQTT CONNACK successfully from broker.
+[INFO] [MQTT] [core_mqtt.c:1831] MQTT connection established with the broker.
+[INFO] [DEMO] [waveCloudApp.c:879] Successfully established connection with provisioned credentials.
+[INFO] [DEMO] [waveCloudApp.c:2205] RS_fCOMM_tCLDM_OTA_UPDATE_RESPONSE Receving Message :3
+[INFO] [DEMO] [waveCloudApp.c:2210] Send ota satatus update responce to communication handler
+[INFO] [MQTT] [core_mqtt.c:885] Packet received. ReceivedBytes=2.
+[INFO] [MQTT] [core_mqtt.c:1163] Ack packet deserialized with result: MQTTSuccess.
+[INFO] [MQTT] [core_mqtt.c:1176] State record updated. New state=MQTTPublishDone.
+[INFO] [MQTT] [core_mqtt.c:885] Packet received. ReceivedBytes=90.
+[INFO] [MQTT] [core_mqtt.c:1046] De-serialized incoming PUBLISH packet: DeserializerResult=MQTTSuccess.
+[INFO] [MQTT] [core_mqtt.c:1059] State record updated. New state=MQTTPublishDone.
+[INFO] [FLEET_PROVISIONING] [mqtt_subscription_manager.c:84] Invoking subscription callback of matching topic filter: TopicFilter=$aws/things/+/jobs/#, TopicName=$aws/things/wave_020011aeae12/jobs/Alpha_P_bt_18/update/accepted
+[INFO] [DEMO] [waveCloudApp.c:1004] Received job message $aws/things/wave_020011aeae12/jobs/Alpha_P_bt_18/update/accepted{"timestamp":1713419730}qtt@v1.1.2mp":1713419719,"execution":{"jobId":"Alpha_P_bt_18","status":"QUEUED","queuedAt":1713419709,"lastUpdatedAt":1713419709,"versionNumber":1,"executionNumber":1,"jobDocument":{"afr_ota":{"protocols":["HTTP"],"files":[{"filepath":"/home/darshak/wave-swu-image-imx8mqwave.swu","filesize":67189760,"fileid":0,"certfile":"/home/darshak/Desktop/cert.crt","auth_scheme":"aws.s3.presigned","update_data_url":"https://wave-ota-bucket.s3.ap-south-1.amazonaws.com/wave-swu-image-imx8mqwave-20240410110323.swu?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEK7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiSDBGAiEA8vqisGdWx8kVDnscqZf4HgdYr4bCEb58xNrdWPXNdMICIQC7vDxxg%2FkhTidDighSr%2BCVs4xFMqKjp53pmM1f93fTRSrmAgjn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDIxMTU1NTI3MTc2MSIMIqh4BVGqTR%2FZttWbKroCrD2GXemywcphBWhC5rFU%2BOVZvKkZWVhmyK6d%2F7qf4fVvg%2FHn3RexLRYjMiT3e0IVMdf7C0ZBfkjDF08XWjKunQvvQ%2F%2FTeFxMQvQVjMKVpRoiRIrtKPLmr8di0v%2BEhu37wN%2BfnW6LuZcNjodYxQYqWrCrZvoNzsCnh6xUVhpt%2Frw7IyRtYv6s2W73p%2BH7cBhIcmFvZnATp4fx2m70l8kVIKKYfnNquXNlCiYWzefW0hDqfwil3crOWto0qwKQxoCkfuyhItUiVW3A9JZKmc3Hi%2B0uH%2F%2FkDqD96a8coeKq12CEgNyO%2BtGvNZpHL06qsHbEoLSwHdV6OBjR%2FeCWKLdxex41Y2xp4xMALHMg9CyutKDqn%2Bn2gSyExzrDlAEQV8%2BgjMenux1a8y1pkYpLU3uFItwKG%2FTr%2FkCqjM0wx%2BuCsQY6vgFEEoeuQw6NdzILbhQ%2FHS9KhNuW0Li6h8BshtL2SNkmKZaGUzYIzUIQbvK%2BOegdiG7jPPyQf1VCeerZApUkDYUL5jcoGEGIOZAU6DVg3CGUnpC5rScjAdlVbokaIiKggvwrpGE%2FV1yBJWRM%2F7FVmQldTPuJTpKpTriKBsAdWCKdaC3jvkxh9sGdsYPGHumj%2Blf%2Fm87uJ%2BJr9CSu4AZX%2BQBJ%2B%2BoGvDEYGXCXJRTlINONeoEB4RNQqFpdZEPlm4gs&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240418T055519Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIATCQNNIRI27AZHXNF%2F20240418%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=7e552435cba023d4a02d51144039fe0e7c6d0bd2fd935ecf3132094b66c1d680","sig-sha256-ecdsa":"MGUCMQDrv5Sd9yR6noc9jwiG7JI96csU/eNRdMsiZ19yw5WSBmFnW/BKzbjIDBSWaqV9VUgCMFBATFGKauxT4mbmSzZuPhIzo/v/CfbP/jWCcAsG4+N3c53++rZW9m3MBxChSl2Atg=="}]}}}} size 24.
+
+
+[INFO] [MQTT] [core_mqtt.c:885] Packet received. ReceivedBytes=74.
+[INFO] [MQTT] [core_mqtt.c:1046] De-serialized incoming PUBLISH packet: DeserializerResult=MQTTSuccess.
+[INFO] [MQTT] [core_mqtt.c:1059] State record updated. New state=MQTTPubAckSend.
+[INFO] [FLEET_PROVISIONING] [mqtt_subscription_manager.c:84] Invoking subscription callback of matching topic filter: TopicFilter=$aws/things/+/jobs/#, TopicName=$aws/things/wave_020011aeae12/jobs/notify-next
+[INFO] [DEMO] [waveCloudApp.c:984] Received job message $aws/things/wave_020011aeae12/jobs/notify-next size 24.
+
+
+[ERROR] [FLEET_PROVISIONING] [fleet_provisioning.c:270] Timed out waiting for response.
+[INFO] [MQTT] [core_mqtt.c:2151] Disconnected from the broker.
+[INFO] [PKCS11] [core_pkcs11_mbedtls.c:1932] Successfully closed PKCS #11 session.
+[INFO] [PKCS11] [core_pkcs11_mbedtls.c:1446] PKCS #11 was successfully uninitialized.
+[INFO] [DEMO] [waveCloudApp.c:1802] Send message to cloud thread to check sheduled JOB
+[INFO] [MSGQ] [msgq.c:161] freeSize, 1064239104l
+[INFO] [PKCS11] [core_pkcs11_mbedtls.c:1403] PKCS #11 successfully initialized.
+[INFO] [DEMO] [waveCloudApp.c:865] Establishing MQTT session with provisioned certificate...
+[INFO] [MQTT] [core_mqtt.c:885] Packet received. ReceivedBytes=2.
+[INFO] [MQTT] [core_mqtt_serializer.c:958] CONNACK session present bit set.
+[INFO] [MQTT] [core_mqtt_serializer.c:912] Connection accepted.
+[INFO] [MQTT] [core_mqtt.c:1565] Received MQTT CONNACK successfully from broker.
+[INFO] [MQTT] [core_mqtt.c:1831] MQTT connection established with the broker.
+[INFO] [DEMO] [waveCloudApp.c:879] Successfully established connection with provisioned credentials.
+[WARN] [DEMO] [waveCloudApp.c:1080] Failed to register a callback to subscription manager with error = 3.
+[INFO] [MQTT] [core_mqtt.c:885] Packet received. ReceivedBytes=3.
+[INFO] [DEMO] [waveCloudApp.c:1224] Subscribed to MQTT topic: $aws/things/wave_020011aeae12/jobs/notify-next
+[INFO] [MQTT] [core_mqtt.c:885] Packet received. ReceivedBytes=2.
+[INFO] [MQTT] [core_mqtt.c:1163] Ack packet deserialized with result: MQTTSuccess.
+[INFO] [MQTT] [core_mqtt.c:1176] State record updated. New state=MQTTPublishDone.
+[INFO] [MQTT] [core_mqtt.c:885] Packet received. ReceivedBytes=115.
+[INFO] [MQTT] [core_mqtt.c:1046] De-serialized incoming PUBLISH packet: DeserializerResult=MQTTSuccess.
+[INFO] [MQTT] [core_mqtt.c:1059] State record updated. New state=MQTTPublishDone.
+[INFO] [FLEET_PROVISIONING] [mqtt_subscription_manager.c:84] Invoking subscription callback of matching topic filter: TopicFilter=$aws/things/+/jobs/#, TopicName=$aws/things/wave_020011aeae12/jobs/$next/get/accepted
+[INFO] [DEMO] [waveCloudApp.c:984] Received job message $aws/things/wave_020011aeae12/jobs/$next/get/accepted{"clientToken":"2:wave_020011aeae12","timestamp":1713419801}"execution":{"jobId":"Alpha_P_bt_18","status":"QUEUED","queuedAt":1713419709,"lastUpdatedAt":1713419709,"versionNumber":1,"executionNumber":1,"jobDocument":{"afr_ota":{"protocols":["HTTP"],"files":[{"filepath":"/home/darshak/wave-swu-image-imx8mqwave.swu","filesize":67189760,"fileid":0,"certfile":"/home/darshak/Desktop/cert.crt","auth_scheme":"aws.s3.presigned","update_data_url":"https://wave-ota-bucket.s3.ap-south-1.amazonaws.com/wave-swu-image-imx8mqwave-20240410110323.swu?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEK7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiSDBGAiEA8vqisGdWx8kVDnscqZf4HgdYr4bCEb58xNrdWPXNdMICIQC7vDxxg%2FkhTidDighSr%2BCVs4xFMqKjp53pmM1f93fTRSrmAgjn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDIxMTU1NTI3MTc2MSIMIqh4BVGqTR%2FZttWbKroCrD2GXemywcphBWhC5rFU%2BOVZvKkZWVhmyK6d%2F7qf4fVvg%2FHn3RexLRYjMiT3e0IVMdf7C0ZBfkjDF08XWjKunQvvQ%2F%2FTeFxMQvQVjMKVpRoiRIrtKPLmr8di0v%2BEhu37wN%2BfnW6LuZcNjodYxQYqWrCrZvoNzsCnh6xUVhpt%2Frw7IyRtYv6s2W73p%2BH7cBhIcmFvZnATp4fx2m70l8kVIKKYfnNquXNlCiYWzefW0hDqfwil3crOWto0qwKQxoCkfuyhItUiVW3A9JZKmc3Hi%2B0uH%2F%2FkDqD96a8coeKq12CEgNyO%2BtGvNZpHL06qsHbEoLSwHdV6OBjR%2FeCWKLdxex41Y2xp4xMALHMg9CyutKDqn%2Bn2gSyExzrDlAEQV8%2BgjMenux1a8y1pkYpLU3uFItwKG%2FTr%2FkCqjM0wx%2BuCsQY6vgFEEoeuQw6NdzILbhQ%2FHS9KhNuW0Li6h8BshtL2SNkmKZaGUzYIzUIQbvK%2BOegdiG7jPPyQf1VCeerZApUkDYUL5jcoGEGIOZAU6DVg3CGUnpC5rScjAdlVbokaIiKggvwrpGE%2FV1yBJWRM%2F7FVmQldTPuJTpKpTriKBsAdWCKdaC3jvkxh9sGdsYPGHumj%2Blf%2Fm87uJ%2BJr9CSu4AZX%2BQBJ%2B%2BoGvDEYGXCXJRTlINONeoEB4RNQqFpdZEPlm4gs&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240418T055519Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIATCQNNIRI27AZHXNF%2F20240418%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=7e552435cba023d4a02d51144039fe0e7c6d0bd2fd935ecf3132094b66c1d680","sig-sha256-ecdsa":"MGUCMQDrv5Sd9yR6noc9jwiG7JI96csU/eNRdMsiZ19yw5WSBmFnW/BKzbjIDBSWaqV9VUgCMFBATFGKauxT4mbmSzZuPhIzo/v/CfbP/jWCcAsG4+N3c53++rZW9m3MBxChSl2Atg=="}]}}}} size 60.
+
+
+[ERROR] [FLEET_PROVISIONING] [fleet_provisioning.c:270] Timed out waiting for response.
+[ERROR] [DEMO] [waveCloudApp.c:1487] Failed to find S3 URL in JSON document: JSONStatus_t=4
+[ERROR] [DEMO] [waveCloudApp.c:1507] Failed to find JobId in JSON document: JSONStatus_t=4
+[ERROR] [DEMO] [waveCloudApp.c:1648] Failed to parse JSON document as job: DocParseErr_t=13
+[INFO] [MQTT] [core_mqtt.c:2151] Disconnected from the broker.
+[ERROR] [DEMO] [waveCloudApp.c:1774] Failed to download OTA file.
+[INFO] [PKCS11] [core_pkcs11_mbedtls.c:1932] Successfully closed PKCS #11 session.
+[INFO] [PKCS11] [core_pkcs11_mbedtls.c:1446] PKCS #11 was successfully uninitialized.
+
+
+
+
+
+
