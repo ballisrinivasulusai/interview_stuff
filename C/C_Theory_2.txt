@@ -2,7 +2,7 @@
 #include<string.h>
 
 
-
+/* sriu added */
 
 /*
 int main()

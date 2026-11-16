@@ -1,0 +1,205 @@
+ 
+ git clone <repository path http>
+ 
+git push process (git clone is done befour only ) after git clone , git push process
+ 
+ 
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP/voc-application/build$ 
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP/voc-application/build$ cd ../
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP/voc-application$ cd ..
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ ls
+bsp_diff  build  Documents  meta-voc  README.md  SETUP.md  voc-application
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ git status 
+On branch feature-Cube_app_V1.0
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   voc-application/CMakeLists.txt
+	modified:   voc-application/FPGA_communication/fpga_comm.c
+	modified:   voc-application/FPGA_communication/fpga_comm.h
+	modified:   voc-application/HAL/eeprom.c
+	modified:   voc-application/HAL/eeprom.h
+	modified:   voc-application/HAL/qspi.c
+	modified:   voc-application/Readme_app.txt
+	modified:   voc-application/audio/audio.c
+	modified:   voc-application/bluetooth/barcode_scanner.c
+	modified:   voc-application/cloud/device_provision.c
+	modified:   voc-application/comm_handler/comm_handler.c
+	modified:   voc-application/common/GlbCommonDef.h
+	modified:   voc-application/common/GlbMsgDef.h
+	modified:   voc-application/diagnostic/diagnostic.c
+	modified:   voc-application/fan/fan.c
+	modified:   voc-application/fan/fan.h
+	modified:   voc-application/logger/log.c
+	modified:   voc-application/logger/log.h
+	modified:   voc-application/main/main.c
+	modified:   voc-application/main/main.h
+	modified:   voc-application/main/main_app.c
+	modified:   voc-application/main/main_app.h
+	modified:   voc-application/measurement/measurement.c
+	modified:   voc-application/measurement/measurement.h
+	modified:   voc-application/measurement/voc.py
+	modified:   voc-application/ota/ota.c
+	modified:   voc-application/port/port.c
+	modified:   voc-application/security/security.c
+	modified:   voc-application/sensors/proximity.c
+	modified:   voc-application/sensors/temperature.c
+	modified:   voc-application/test_framework/test_app.c
+	modified:   voc-application/test_framework/test_app.h
+	modified:   voc-application/test_framework/thrift_comm.c
+	modified:   voc-application/test_framework/thrift_comm.h
+	modified:   voc-application/tools/chip_calibration_controller.py
+	modified:   voc-application/tools/server.py
+	modified:   voc-application/tools/usb_files/DNS_Nameserver.txt
+	modified:   voc-application/tools/usb_files/WiFi_Credentials.txt
+	modified:   voc-application/usb/usb.c
+	modified:   voc-application/usb/usb.h
+	modified:   voc-application/watchdog/watchdog.c
+	modified:   voc-application/watchdog/watchdog.h
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	voc-application/DeviceSideScript/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ git status 
+On branch feature-Cube_app_V1.0
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   voc-application/CMakeLists.txt
+	modified:   voc-application/FPGA_communication/fpga_comm.c
+	modified:   voc-application/FPGA_communication/fpga_comm.h
+	modified:   voc-application/HAL/eeprom.c
+	modified:   voc-application/HAL/eeprom.h
+	modified:   voc-application/HAL/qspi.c
+	modified:   voc-application/Readme_app.txt
+	modified:   voc-application/audio/audio.c
+	modified:   voc-application/bluetooth/barcode_scanner.c
+	modified:   voc-application/cloud/device_provision.c
+	modified:   voc-application/comm_handler/comm_handler.c
+	modified:   voc-application/common/GlbCommonDef.h
+	modified:   voc-application/common/GlbMsgDef.h
+	modified:   voc-application/diagnostic/diagnostic.c
+	modified:   voc-application/fan/fan.c
+	modified:   voc-application/fan/fan.h
+	modified:   voc-application/logger/log.c
+	modified:   voc-application/logger/log.h
+	modified:   voc-application/main/main.c
+	modified:   voc-application/main/main.h
+	modified:   voc-application/main/main_app.c
+	modified:   voc-application/main/main_app.h
+	modified:   voc-application/measurement/measurement.c
+	modified:   voc-application/measurement/measurement.h
+	modified:   voc-application/measurement/voc.py
+	modified:   voc-application/ota/ota.c
+	modified:   voc-application/port/port.c
+	modified:   voc-application/security/security.c
+	modified:   voc-application/sensors/proximity.c
+	modified:   voc-application/sensors/temperature.c
+	modified:   voc-application/test_framework/test_app.c
+	modified:   voc-application/test_framework/test_app.h
+	modified:   voc-application/test_framework/thrift_comm.c
+	modified:   voc-application/test_framework/thrift_comm.h
+	modified:   voc-application/tools/chip_calibration_controller.py
+	modified:   voc-application/tools/server.py
+	modified:   voc-application/tools/usb_files/DNS_Nameserver.txt
+	modified:   voc-application/tools/usb_files/WiFi_Credentials.txt
+	modified:   voc-application/usb/usb.c
+	modified:   voc-application/usb/usb.h
+	modified:   voc-application/watchdog/watchdog.c
+	modified:   voc-application/watchdog/watchdog.h
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	voc-application/DeviceSideScript/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ 
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ 
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ 
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ 
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ 
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ git add .
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ git status 
+On branch feature-Cube_app_V1.0
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   voc-application/CMakeLists.txt
+	new file:   voc-application/DeviceSideScript/Cube_Board_Installation_Guide.docx
+	new file:   voc-application/DeviceSideScript/PCSide_tools/wave_device_conf.py
+	new file:   voc-application/DeviceSideScript/opt/chip_calibration_controller.py
+	new file:   voc-application/DeviceSideScript/opt/chip_volts_reset.py
+	new file:   voc-application/DeviceSideScript/opt/device_conf.txt
+	new file:   voc-application/DeviceSideScript/opt/test_interface.py
+	new file:   voc-application/DeviceSideScript/opt/voc.py
+	modified:   voc-application/FPGA_communication/fpga_comm.c
+	modified:   voc-application/FPGA_communication/fpga_comm.h
+	modified:   voc-application/HAL/eeprom.c
+	modified:   voc-application/HAL/eeprom.h
+	modified:   voc-application/HAL/qspi.c
+	modified:   voc-application/Readme_app.txt
+	modified:   voc-application/audio/audio.c
+	modified:   voc-application/bluetooth/barcode_scanner.c
+	modified:   voc-application/cloud/device_provision.c
+	modified:   voc-application/comm_handler/comm_handler.c
+	modified:   voc-application/common/GlbCommonDef.h
+	modified:   voc-application/common/GlbMsgDef.h
+	modified:   voc-application/diagnostic/diagnostic.c
+	modified:   voc-application/fan/fan.c
+	modified:   voc-application/fan/fan.h
+	modified:   voc-application/logger/log.c
+	modified:   voc-application/logger/log.h
+	modified:   voc-application/main/main.c
+	modified:   voc-application/main/main.h
+	modified:   voc-application/main/main_app.c
+	modified:   voc-application/main/main_app.h
+	modified:   voc-application/measurement/measurement.c
+	modified:   voc-application/measurement/measurement.h
+	modified:   voc-application/measurement/voc.py
+	modified:   voc-application/ota/ota.c
+	modified:   voc-application/port/port.c
+	modified:   voc-application/security/security.c
+	modified:   voc-application/sensors/proximity.c
+	modified:   voc-application/sensors/temperature.c
+	modified:   voc-application/test_framework/test_app.c
+	modified:   voc-application/test_framework/test_app.h
+	modified:   voc-application/test_framework/thrift_comm.c
+	modified:   voc-application/test_framework/thrift_comm.h
+	modified:   voc-application/tools/chip_calibration_controller.py
+	modified:   voc-application/tools/server.py
+	modified:   voc-application/tools/usb_files/DNS_Nameserver.txt
+	modified:   voc-application/tools/usb_files/WiFi_Credentials.txt
+	modified:   voc-application/usb/usb.c
+	modified:   voc-application/usb/usb.h
+	modified:   voc-application/watchdog/watchdog.c
+	modified:   voc-application/watchdog/watchdog.h
+
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ git commit -m "Cube application Code - 1.0.6-Cube and Provided the Device update procedure"
+[feature-Cube_app_V1.0 7badfd5] Cube application Code - 1.0.6-Cube and Provided the Device update procedure
+ 49 files changed, 4153 insertions(+), 606 deletions(-)
+ create mode 100644 voc-application/DeviceSideScript/Cube_Board_Installation_Guide.docx
+ create mode 100644 voc-application/DeviceSideScript/PCSide_tools/wave_device_conf.py
+ create mode 100644 voc-application/DeviceSideScript/opt/chip_calibration_controller.py
+ create mode 100644 voc-application/DeviceSideScript/opt/chip_volts_reset.py
+ create mode 100644 voc-application/DeviceSideScript/opt/device_conf.txt
+ create mode 100644 voc-application/DeviceSideScript/opt/test_interface.py
+ create mode 100644 voc-application/DeviceSideScript/opt/voc.py
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ git push -u origin feature-Cube_app_V1.0
+Enumerating objects: 138, done.
+Counting objects: 100% (138/138), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (74/74), done.
+Writing objects: 100% (75/75), 69.38 KiB | 1.61 MiB/s, done.
+Total 75 (delta 46), reused 0 (delta 0)
+remote: Resolving deltas: 100% (46/46), completed with 45 local objects.
+remote: 
+remote: Create a pull request for 'feature-Cube_app_V1.0' on GitHub by visiting:
+remote:      https://github.com/FirstView/VOC_CUBEX_BSP/pull/new/feature-Cube_app_V1.0
+remote: 
+To https://github.com/FirstView/VOC_CUBEX_BSP.git
+ * [new branch]      feature-Cube_app_V1.0 -> feature-Cube_app_V1.0
+Branch 'feature-Cube_app_V1.0' set up to track remote branch 'feature-Cube_app_V1.0' from 'origin'.
+zumi@zumi-pc:~/alpha-plus-ws/VOC-Backup/Zaid/VOC_CUBEX_BSP$ 
+
+
