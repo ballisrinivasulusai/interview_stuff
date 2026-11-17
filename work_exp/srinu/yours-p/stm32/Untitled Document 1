@@ -1,0 +1,43 @@
+Project Overview
+
+The project involves two controllers: STM32CX and STM32FX. The system is designed to control multiple relay banks and verify their operation through data communication between the two controllers.
+
+STM32CX Controller Operation
+
+The STM32CX controller manages 4 banks, and each bank contains:
+
+4 relays
+
+2 digital outputs
+
+1 input pin (IN)
+
+1 output pin (OUT)
+
+The STM32CX operates continuously or can run each bank sequentially with a defined delay.
+
+During operation, a gray code corresponding to the active bank is sent from STM32CX to STM32FX.
+
+The IN pin of STM32CX is connected to STM32FX. When STM32FX drives this pin low, STM32CX changes the bank operating speed to 8 ms.
+
+STM32CX also transfers the running bank data to STM32FX for verification and monitoring.
+
+STM32FX Controller Operation
+
+The STM32FX controller declares the bank data and reads digital inputs from the STM32CX.
+
+It compares the received data with the expected bank data:
+
+If both match → displays PASS
+
+If they differ → displays FAIL
+
+STM32FX sends a low signal on the IN pin to STM32CX whenever the user triggers an input command.
+
+Function Summary
+
+This project effectively controls and monitors multiple relay banks using two STM32 microcontrollers.
+
+STM32CX handles relay control and bank operation.
+
+STM32FX performs data verification and feedback control, ensuring reliable synchronization between both controllers.

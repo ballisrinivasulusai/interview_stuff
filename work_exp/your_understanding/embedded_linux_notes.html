@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Embedded Linux – Zumi's Notes (Corrected)</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2128;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+    --accent3: #f78166;
+    --accent4: #d2a8ff;
+    --accent5: #ffa657;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --text3: #c9d1d9;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    line-height: 1.7;
+  }
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1c2128 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content:'';
+    position:absolute; top:-60px; right:-60px;
+    width:300px; height:300px;
+    background: radial-gradient(circle, rgba(88,166,255,0.12) 0%, transparent 70%);
+    border-radius:50%;
+  }
+  header .badge {
+    display:inline-block;
+    background: rgba(88,166,255,0.15);
+    border: 1px solid rgba(88,166,255,0.3);
+    color: var(--accent);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), var(--accent4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+  }
+  header p { color: var(--text2); margin-top: 10px; font-size: 1rem; }
+  /* CORRECTION BANNER */
+  .correction-banner {
+    margin: 32px 40px;
+    background: rgba(63,185,80,0.08);
+    border: 1px solid rgba(63,185,80,0.3);
+    border-left: 4px solid var(--accent2);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    color: var(--text3);
+  }
+  .correction-banner strong { color: var(--accent2); }
+  /* NAV */
+  nav {
+    padding: 0 40px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 8px;
+  }
+  nav a {
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text2);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--accent); border-color: var(--accent); background: rgba(88,166,255,0.05); }
+  /* MAIN LAYOUT */
+  main { padding: 20px 40px 60px; max-width: 1200px; }
+  /* SECTION */
+  .section {
+    margin-top: 48px;
+    scroll-margin-top: 20px;
+  }
+  .section-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    background: var(--accent);
+    color: #0d1117;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 12px;
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section h2 { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+  /* CARDS */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 16px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(88,166,255,0.4); }
+  .card-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .card p, .card ul { font-size: 0.87rem; color: var(--text3); }
+  .card ul { padding-left: 16px; }
+  .card ul li { margin-bottom: 4px; }
+  /* DIAGRAM */
+  .diagram-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+  .diagram-box h3 {
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  /* FLOW DIAGRAM */
+  .flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .flow-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    min-width: 100px;
+    position: relative;
+  }
+  .flow-item.blue { border-color: var(--accent); color: var(--accent); }
+  .flow-item.green { border-color: var(--accent2); color: var(--accent2); }
+  .flow-item.red { border-color: var(--accent3); color: var(--accent3); }
+  .flow-item.purple { border-color: var(--accent4); color: var(--accent4); }
+  .flow-item.orange { border-color: var(--accent5); color: var(--accent5); }
+  .flow-arrow { color: var(--text2); font-size: 1.2rem; flex-shrink:0; }
+  .flow-sub { font-size: 0.7rem; color: var(--text2); font-weight: 400; display:block; margin-top:2px; }
+  /* BOOT TABLE */
+  table { width:100%; border-collapse: collapse; font-size: 0.87rem; }
+  th {
+    background: var(--surface2);
+    color: var(--text2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+    color: var(--text3);
+    vertical-align: top;
+  }
+  td:first-child { color: var(--accent); font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+  tr:hover td { background: rgba(88,166,255,0.03); }
+  /* CODE BLOCK */
+  .code-block {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent2);
+    overflow-x: auto;
+    line-height: 1.8;
+    margin: 10px 0;
+  }
+  .code-block .cmt { color: var(--text2); }
+  .code-block .cmd { color: var(--accent); }
+  .code-block .arg { color: var(--accent5); }
+  .code-block .str { color: var(--accent3); }
+  /* CORRECTION NOTE */
+  .correction {
+    background: rgba(247,129,102,0.07);
+    border-left: 3px solid var(--accent3);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 0.84rem;
+    color: var(--text3);
+  }
+  .correction strong { color: var(--accent3); }
+  /* OK NOTE */
+  .ok-note {
+    background: rgba(63,185,80,0.07);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 0.84rem;
+    color: var(--text3);
+  }
+  .ok-note strong { color: var(--accent2); }
+  /* GRID 2 */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:768px){ .grid2 { grid-template-columns: 1fr; } }
+  /* MTD DIAGRAM */
+  .mtd-diagram {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .mtd-box {
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+  .mtd-title {
+    background: var(--surface2);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .mtd-row {
+    padding: 7px 12px;
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .mtd-row.active { background: rgba(63,185,80,0.12); color: var(--accent2); }
+  .mtd-row.inactive { background: rgba(88,166,255,0.07); color: var(--accent); }
+  .mtd-row.app { background: rgba(210,168,255,0.08); color: var(--accent4); }
+  /* STEPS */
+  .steps { display:flex; flex-direction:column; gap:14px; }
+  .step {
+    display:flex; gap:16px; align-items:flex-start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .step-num {
+    width:32px; height:32px; border-radius:50%;
+    background: var(--accent);
+    color: #0d1117;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .step-content h4 { font-size:0.9rem; font-weight:700; margin-bottom:4px; }
+  .step-content p { font-size:0.84rem; color: var(--text3); }
+  /* TAG */
+  .tag {
+    display:inline-block;
+    font-size:11px;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px;
+  }
+  .tag.blue { background: rgba(88,166,255,0.15); color: var(--accent); }
+  .tag.green { background: rgba(63,185,80,0.15); color: var(--accent2); }
+  .tag.red { background: rgba(247,129,102,0.15); color: var(--accent3); }
+  .tag.purple { background: rgba(210,168,255,0.15); color: var(--accent4); }
+  .tag.orange { background: rgba(255,166,87,0.15); color: var(--accent5); }
+  /* INFO BOX */
+  .info-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+  .info-box h4 { font-size:0.95rem; margin-bottom:10px; }
+  .info-box p, .info-box ul { font-size:0.85rem; color: var(--text3); }
+  .info-box ul { padding-left:16px; }
+  .info-box ul li { margin-bottom:4px; }
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+    color: var(--text2);
+    font-size: 0.82rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  /* VERTICAL FLOW */
+  .vflow { display:flex; flex-direction:column; align-items:flex-start; gap:2px; }
+  .vflow .flow-arrow { transform: rotate(90deg); align-self:center; }
+  /* HIGHLIGHT */
+  .hl { color: var(--accent); font-weight:600; }
+  .hl2 { color: var(--accent2); font-weight:600; }
+  .hl3 { color: var(--accent3); font-weight:600; }
+  .hl4 { color: var(--accent4); font-weight:600; }
+  .hl5 { color: var(--accent5); font-weight:600; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="badge">EMBEDDED LINUX STUDY NOTES — CORRECTED & ENHANCED</div>
+  <h1>Full Embedded Linux<br>Build &amp; Boot Process</h1>
+  <p>Based on Zumi's handwritten notes · AM437x Board · Yocto Project</p>
+</header>
+
+<!-- CORRECTION BANNER -->
+<div class="correction-banner">
+  <strong>✅ Overall Assessment:</strong> Your notes are <strong>mostly correct</strong>! The core concepts of MLO → U-Boot → Kernel → RootFS, Yocto build flow, dual-OS firmware update, CVE analysis, and all the practical commands are accurate. A few small corrections and additions are noted inline below.
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#s1">1. Components</a>
+  <a href="#s2">2. Boot Process</a>
+  <a href="#s3">3. Build Process</a>
+  <a href="#s4">4. Yocto</a>
+  <a href="#s5">5. Firmware OTA</a>
+  <a href="#s6">6. CVE</a>
+  <a href="#s7">7. Practical Boot</a>
+  <a href="#s8">8. Commands</a>
+  <a href="#s9">9. File Transfer</a>
+  <a href="#s10">10. Tools</a>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 1: COMPONENTS -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Embedded Linux Components</h2>
+  </div>
+
+  <div class="diagram-box">
+    <h3>📦 Boot Components Flow</h3>
+    <div class="flow">
+      <div class="flow-item blue">ROM Code<div class="flow-sub">Built-in SoC</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item orange">MLO<div class="flow-sub">1st Stage BL</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item green">U-Boot<div class="flow-sub">2nd Stage BL</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item purple">Kernel<div class="flow-sub">Linux OS Core</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item red">RootFS<div class="flow-sub">User Space</div></div>
+    </div>
+    <br/>
+    <div class="flow" style="margin-top:8px;">
+      <div class="flow-item" style="min-width:80px;font-size:0.75rem;color:var(--text2);">NAND/SD</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item" style="min-width:60px;font-size:0.75rem;color:var(--text2);">RAM</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item" style="min-width:100px;font-size:0.75rem;color:var(--text2);">Execute</div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🟠</div>
+      <h3>MLO (Memory Loader)</h3>
+      <p><strong>First stage bootloader.</strong> Loaded directly by the SoC's internal ROM code.</p>
+      <ul>
+        <li>Initializes RAM (DDR)</li>
+        <li>Sets up minimal clocks</li>
+        <li>Loads U-Boot into RAM</li>
+        <li>Also called <em>X-Loader</em> on OMAP/AM boards</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🟢</div>
+      <h3>U-Boot</h3>
+      <p><strong>Second stage bootloader.</strong> Fully-featured, configurable.</p>
+      <ul>
+        <li>Initializes all hardware</li>
+        <li>Loads Linux Kernel + DTB into RAM</li>
+        <li>Passes bootargs to kernel</li>
+        <li>Supports UART, SD, NAND boot</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🟣</div>
+      <h3>Kernel</h3>
+      <p><strong>Linux OS core.</strong> Manages all hardware and system resources.</p>
+      <ul>
+        <li>Process management</li>
+        <li>Memory management</li>
+        <li>Device drivers</li>
+        <li>Reads <span class="tag blue">.dtb</span> (Device Tree Binary)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔴</div>
+      <h3>Root File System (RootFS)</h3>
+      <p><strong>User space environment.</strong> Contains everything above the kernel.</p>
+      <ul>
+        <li>Libraries (libc, openssl…)</li>
+        <li>Binaries (/bin, /sbin…)</li>
+        <li>Applications</li>
+        <li>Config files</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ok-note" style="margin-top:16px;">
+    <strong>✅ Correct:</strong> Your understanding of MLO → U-Boot → Kernel → RootFS is exactly right. MLO is indeed loaded by ROM, and U-Boot does load the kernel and device tree into memory.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 2: BOOT PROCESS -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Boot Process (AM437x)</h2>
+  </div>
+
+  <div class="diagram-box">
+    <h3>🔄 Boot Flow on AM437x Board</h3>
+    <div class="flow">
+      <div class="flow-item orange">Power ON</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item blue">ROM Code<div class="flow-sub">checks boot pins</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item orange">MLO<div class="flow-sub">from SD/NAND</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item green">U-Boot<div class="flow-sub">in RAM</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item purple">Kernel + DTB<div class="flow-sub">decompressed</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item red">init / systemd<div class="flow-sub">user space</div></div>
+    </div>
+  </div>
+
+  <div class="diagram-box">
+    <h3>🥾 3 Boot Methods (Correct in your notes!)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Method</th><th>Interface</th><th>Speed</th><th>Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Serial Boot <span class="tag blue">UART</span></td>
+          <td>UART / USB</td>
+          <td>🐢 Slowest</td>
+          <td>Initial board bring-up, factory programming</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>SD Card Boot <span class="tag green">MMC</span></td>
+          <td>MMC/SD slot</td>
+          <td>⚡ Fast</td>
+          <td>Development, testing new images</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>NAND Flash Boot <span class="tag orange">Flash</span></td>
+          <td>NAND / eMMC</td>
+          <td>⚡ Fast</td>
+          <td>Production devices</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid2">
+    <div class="info-box">
+      <h4>🔁 Build Process vs Boot Process</h4>
+      <p><strong style="color:var(--accent)">Build Process</strong> — happens on your <em>PC/host machine</em>, before deployment.<br>Creates OS images (MLO, u-boot.img, kernel, rootfs) from source code using Yocto.</p>
+      <br>
+      <p><strong style="color:var(--accent2)">Boot Process</strong> — happens on the <em>target board</em>, after power-on.<br>How the system loads and starts the OS from stored images.</p>
+    </div>
+    <div class="info-box">
+      <h4>📡 ping 192.168.0.153</h4>
+      <p>Used to check if your board is reachable on the local network.</p>
+      <div class="code-block">
+        <span class="cmd">ping</span> <span class="arg">192.168.0.153</span><br>
+        <span class="cmt"># If reply → board is connected</span><br>
+        <span class="cmt"># If timeout → not reachable</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 3: BUILD PROCESS -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Build Process &amp; .bb Files</h2>
+  </div>
+
+  <div class="diagram-box">
+    <h3>🏗️ Yocto .bb Recipe Build Steps (Correct!)</h3>
+    <div class="flow">
+      <div class="flow-item blue">① Path<div class="flow-sub">Source location</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item green">② Fetch<div class="flow-sub">Download src</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item purple">③ Patch<div class="flow-sub">Apply patches</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item orange">④ Configure<div class="flow-sub">Set options</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item red">⑤ Compile<div class="flow-sub">Build binary</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item blue">⑥ Install<div class="flow-sub">Stage files</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item green">⑦ Image<div class="flow-sub">Created ✓</div></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="info-box">
+      <h4>📄 What is a .bb (BitBake) File?</h4>
+      <p>A recipe file in Yocto that tells BitBake how to build a package. It declares:</p>
+      <ul>
+        <li><strong>SRC_URI</strong> — where to fetch the source</li>
+        <li><strong>Patches</strong> — fixes/modifications to apply</li>
+        <li><strong>DEPENDS</strong> — what packages are needed</li>
+        <li><strong>configure / compile / install</strong> tasks</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h4>🩹 What is a Patch?</h4>
+      <p>A <strong>patch</strong> is extra code (a diff) applied on top of original source code.</p>
+      <ul>
+        <li>Fix a CVE vulnerability in a library</li>
+        <li>Add a board-specific feature</li>
+        <li>Backport a fix from a newer version</li>
+      </ul>
+      <div class="code-block">
+        <span class="cmt"># Apply a patch manually:</span><br>
+        <span class="cmd">patch</span> <span class="arg">-p1</span> &lt; fix_cve.patch
+      </div>
+    </div>
+  </div>
+
+  <div class="diagram-box">
+    <h3>📦 Binary Output Files</h3>
+    <table>
+      <thead><tr><th>Component</th><th>Source</th><th>Output File</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>MLO</td><td>TI boot code</td><td><span class="tag orange">MLO</span></td><td>First stage BL binary</td></tr>
+        <tr><td>U-Boot</td><td>u-boot source</td><td><span class="tag green">u-boot.img</span></td><td>Second stage BL image</td></tr>
+        <tr><td>Kernel + DTB</td><td>linux kernel</td><td><span class="tag purple">am437x.dtb + zImage → FitImage.itb</span></td><td>DTB = Device Tree Binary</td></tr>
+        <tr><td>RootFS</td><td>Yocto build</td><td><span class="tag red">int-rootfs.ubifs → .ubi</span></td><td>UBI = flash filesystem</td></tr>
+      </tbody>
+    </table>
+    <div class="ok-note" style="margin-top:12px;">
+      <strong>✅ Correct:</strong> FitImage.itb = am437x.dtb + zImage bundled together. .ubifs → .ubi is the correct NAND flash format chain.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 4: YOCTO -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Yocto Project Build System</h2>
+  </div>
+
+  <div class="diagram-box">
+    <h3>🏭 Yocto Architecture</h3>
+    <div class="flow" style="flex-wrap:wrap; gap:12px;">
+      <div class="flow-item blue" style="min-width:120px;">Poky<div class="flow-sub">Yocto Reference</div></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-item orange" style="min-width:120px;">BSP Layer<div class="flow-sub">AM437x board</div></div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-item purple" style="min-width:120px;">Meta Layers<div class="flow-sub">recipes (.bb)</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item green" style="min-width:120px;">BitBake<div class="flow-sub">Build engine</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item red" style="min-width:140px;">Final Image<div class="flow-sub">MLO+UBoot+Kern+RootFS</div></div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">⚙️</div>
+      <h3>BitBake</h3>
+      <p>The build engine for Yocto. Reads .bb recipe files and executes: fetch → patch → configure → compile → install → package → image.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>image.bb</h3>
+      <p>The top-level recipe that declares which packages go into your final image. Generates the RootFS. You configure what to include here.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗄️</div>
+      <h3>Sstate Cache</h3>
+      <p>Yocto's shared state cache. Previously built packages are reused — speeds up rebuilds significantly. Your note about "one database" refers to this.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔧</div>
+      <h3>devshell / devtool</h3>
+      <p>Tools to work inside Yocto's build environment for a recipe. Useful for debugging and modifying a specific package's build.</p>
+    </div>
+  </div>
+
+  <div class="correction" style="margin-top:16px;">
+    <strong>📝 Small addition:</strong> Your note mentions "Yocto 3.1m" — the <strong>3.1</strong> release is codenamed <strong>"Dunfell"</strong> (LTS). When you reference a Yocto version in docs, it's better to use the codename. Current LTS is <strong>Scarthgap (5.0)</strong>.
+  </div>
+
+  <div class="diagram-box" style="margin-top:16px;">
+    <h3>🐍 Cross-compilation tools in Yocto</h3>
+    <table>
+      <thead><tr><th>Tool</th><th>File Type</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>gcc (cross)</td><td>.c → .o → a.out</td><td>C compiler for target arch (ARM)</td></tr>
+        <tr><td>python3</td><td>.py</td><td>Python scripts / build scripts</td></tr>
+        <tr><td>bash / sh</td><td>.sh</td><td>Shell scripts for build tasks</td></tr>
+        <tr><td>make / cmake</td><td>Makefile</td><td>Build coordination</td></tr>
+      </tbody>
+    </table>
+    <div class="ok-note" style="margin-top:10px;">
+      <strong>✅ Correct:</strong> gcc 1.c → a.out flow is right. bash vs sh: bash is a superset of sh; sh is POSIX shell. Scripts using bash features need #!/bin/bash.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 5: FIRMWARE OTA UPDATE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Firmware / Software Update (OTA)</h2>
+  </div>
+
+  <div class="diagram-box">
+    <h3>🔄 Dual OS Firmware Update Strategy (Your design is correct!)</h3>
+    <div class="mtd-diagram">
+      <div>
+        <div class="mtd-box">
+          <div class="mtd-title">MTD NAND Layout</div>
+          <div class="mtd-row" style="color:var(--text2);">MLO</div>
+          <div class="mtd-row" style="color:var(--text2);">U-Boot</div>
+          <div class="mtd-row" style="color:var(--text2);">Kernel</div>
+          <div class="mtd-row" style="color:var(--text2);">DTB</div>
+          <div class="mtd-row active">OS-1 (RootFS) ← current</div>
+          <div class="mtd-row inactive">OS-2 (RootFS) ← standby</div>
+          <div class="mtd-row" style="color:var(--text2);">env variable</div>
+          <div class="mtd-row app">Application</div>
+        </div>
+      </div>
+      <div style="flex:1; min-width:260px;">
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Normal Operation</h4>
+              <p>env variable = <span class="tag green">0</span> → boots OS-1 (current working OS)</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>PC sends new firmware</h4>
+              <p>PC application broadcasts new version image. Board OS-1 receives it (monitors for "need ip" string trigger).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Write to OS-2</h4>
+              <p>New image is written into <span class="tag blue">OS-2 partition</span> (standby). OS-1 stays untouched → <strong>no data loss</strong>.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Switch &amp; Reboot</h4>
+              <p>env variable set to <span class="tag blue">1</span> → next boot loads OS-2 (new firmware). If fail → fallback to OS-1.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ok-note" style="margin-top:16px;">
+      <strong>✅ Correct!</strong> This is called an A/B (dual-partition) OTA update scheme. Used in Android, Mender, RAUC, and custom embedded systems. Your explanation of using env variable 0/1 to select OS is exactly how U-Boot boot selection works!
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>📦 MTD — Memory Technology Device</h4>
+    <p>MTD is a Linux subsystem for raw flash memory (NAND/NOR). It provides partitions in flash, like a partition table for flash storage. Tools: <span class="tag blue">mtdinfo</span> <span class="tag green">flash_erase</span> <span class="tag orange">nandwrite</span> <span class="tag purple">ubinize</span></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 6: CVE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>CVE — Common Vulnerabilities and Exposures</h2>
+  </div>
+
+  <div class="grid2">
+    <div class="info-box">
+      <h4>🔐 What is CVE?</h4>
+      <p><strong>CVE = Common Vulnerabilities and Exposures</strong></p>
+      <ul>
+        <li>A unique ID for a known security issue in software/hardware</li>
+        <li>Format: <span class="tag red">CVE-YEAR-NUMBER</span> e.g., CVE-2023-52434</li>
+        <li>Tracked in the <strong>NVD (National Vulnerability Database)</strong></li>
+        <li>Each CVE has a severity score (CVSS)</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h4>🔍 NVD Database</h4>
+      <p>Search CVEs at: <span class="tag blue">nvd.nist.gov</span></p>
+      <p>Tells you:</p>
+      <ul>
+        <li>Which version is affected</li>
+        <li>What is the fix / patch</li>
+        <li>CVSS severity score (0–10)</li>
+        <li>Reference links to patches</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram-box">
+    <h3>🛡️ CVE Fix Process in Yocto (Your flow is correct!)</h3>
+    <div class="flow">
+      <div class="flow-item blue">RootFS<div class="flow-sub">built image</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item orange">CVE-Bin-Tool<div class="flow-sub">scan rootfs</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item red">CVE List<div class="flow-sub">found issues</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item purple">NVD DB<div class="flow-sub">lookup fix</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item green">Apply Patch<div class="flow-sub">in .bb file</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item blue">Rebuild<div class="flow-sub">new image</div></div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>🛠️ CVE-Bin-Tool Usage</h4>
+    <div class="code-block">
+      <span class="cmt"># Install CVE-Bin-Tool</span><br>
+      <span class="cmd">pip3 install</span> <span class="arg">cve-bin-tool</span><br><br>
+      <span class="cmt"># Scan your rootfs directory</span><br>
+      <span class="cmd">cve-bin-tool</span> <span class="arg">./rootfs/</span><br><br>
+      <span class="cmt"># Output shows: package, version, CVE ID, severity</span><br>
+      <span class="cmt"># e.g. openssl 1.0.2 → CVE-2023-0286 (HIGH)</span>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:12px;">
+    <h4>🔎 grep command — Find a word in files</h4>
+    <div class="code-block">
+      <span class="cmd">grep</span> <span class="arg">-r</span> <span class="str">"word"</span> <span class="arg">./path/</span><br>
+      <span class="cmt"># -r = recursive (search all subfolders)</span><br><br>
+      <span class="cmt"># Example: find CVE string in rootfs</span><br>
+      <span class="cmd">grep</span> <span class="arg">-r</span> <span class="str">"openssl"</span> <span class="arg">./rootfs/</span><br><br>
+      <span class="cmt"># Find file by name:</span><br>
+      <span class="cmd">find</span> <span class="arg">.</span> <span class="arg">-iname</span> <span class="str">"*.so"</span>
+    </div>
+    <div class="ok-note"><strong>✅ Correct:</strong> grep -r "word" is right. Your note about using find -iname is also correct.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 7: PRACTICAL BOOTING -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Practical Booting on Board (AM437x)</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Copy image to SD card</h4>
+        <div class="code-block">
+          <span class="cmt"># Copy UBI image to SD card boot partition</span><br>
+          <span class="cmd">cp</span> <span class="arg">cnt-fs.ubi</span> <span class="str">/media/zumi/Boot/</span><br><br>
+          <span class="cmt"># Unmount safely</span><br>
+          <span class="cmd">umount</span> <span class="str">/media/zumi/Boot/</span>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Insert SD card &amp; Open minicom</h4>
+        <div class="code-block">
+          <span class="cmt"># Open serial terminal to board</span><br>
+          <span class="cmd">sudo minicom</span><br><br>
+          <span class="cmt"># Turn on board → you'll see MLO → U-Boot messages</span><br>
+          <span class="cmt"># Press any key to enter U-Boot menu</span>
+        </div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>U-Boot: 3 commands to flash new image to NAND</h4>
+        <div class="code-block">
+          <span class="cmt"># Step 1: Erase NAND memory</span><br>
+          <span class="cmd">nand erase.part</span> <span class="arg">rootfs</span><br><br>
+          <span class="cmt"># Step 2: Copy from SD card to RAM</span><br>
+          <span class="cmd">load mmc 0</span> <span class="arg">${loadaddr}</span> <span class="str">cnt-fs.ubi</span><br><br>
+          <span class="cmt"># Step 3: Write from RAM to NAND</span><br>
+          <span class="cmd">nand write</span> <span class="arg">${loadaddr}</span> <span class="arg">rootfs</span> <span class="arg">${filesize}</span>
+        </div>
+        <div class="ok-note"><strong>✅ Correct!</strong> The 3-step flow: Clear NAND → Copy SD to RAM → Write RAM to NAND is exactly right.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Reset / Reboot</h4>
+        <div class="code-block">
+          <span class="cmt"># In U-Boot:</span><br>
+          <span class="cmd">reset</span><br><br>
+          <span class="cmt"># Board reboots from NAND with new image</span><br>
+          <span class="cmt"># Loads: MLO → U-Boot → Kernel → RootFS (new)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:16px;">
+    <h4>📁 .profile — What is it?</h4>
+    <p><strong>.profile</strong> is a hidden script in your home directory (<span class="tag blue">~/.profile</span>) that runs automatically when a user logs in or the system boots.</p>
+    <ul>
+      <li>Set environment variables (PATH, LD_LIBRARY_PATH)</li>
+      <li>Start a script or program automatically at boot</li>
+      <li>Configure terminal settings</li>
+    </ul>
+    <div class="code-block">
+      <span class="cmt"># Example ~/.profile</span><br>
+      <span class="cmd">export</span> <span class="arg">PATH</span>=<span class="str">/opt/myapp:$PATH</span><br>
+      <span class="cmd">export</span> <span class="arg">LD_LIBRARY_PATH</span>=<span class="str">/opt/mylibs</span><br>
+      /opt/myapp/start.sh   <span class="cmt"># auto-start app</span>
+    </div>
+    <div class="ok-note"><strong>✅ Correct:</strong> Your understanding of .profile is accurate.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 8: COMMANDS -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s8">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Important Linux Commands</h2>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🔑</div>
+      <h3>checksum (sha256sum / md5sum)</h3>
+      <p>Generates a unique hash for a file. If the file changes, hash changes. Used to verify file integrity.</p>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmd">sha256sum</span> <span class="arg">filename</span><br>
+        <span class="cmd">md5sum</span> <span class="arg">filename</span>
+      </div>
+      <div class="ok-note" style="margin:6px 0 0"><strong>✅ Correct!</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <h3>tar — Compress / Archive</h3>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmt"># Compress folder:</span><br>
+        <span class="cmd">tar -czvf</span> <span class="str">Cuba-1.8.tar.gz</span> <span class="arg">Cuba-19/</span><br><br>
+        <span class="cmt"># Extract:</span><br>
+        <span class="cmd">tar -xzvf</span> <span class="str">Cuba-1.8.tar.gz</span>
+      </div>
+      <p style="font-size:0.8rem;margin-top:6px;color:var(--text2);">-c=create -x=extract -z=gzip -v=verbose -f=file</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>cp / scp</h3>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmt"># Local copy:</span><br>
+        <span class="cmd">cp</span> <span class="arg">source</span> <span class="arg">destination</span><br>
+        <span class="cmd">cp -r</span> <span class="arg">dir1/</span> <span class="arg">dir2/</span><br><br>
+        <span class="cmt"># Remote copy:</span><br>
+        <span class="cmd">scp</span> <span class="arg">user@ip:/src</span> <span class="arg">.</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h3>chmod / sync / reboot</h3>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmt"># Full permission:</span><br>
+        <span class="cmd">chmod</span> <span class="arg">777</span> <span class="str">/opt/thewave</span><br><br>
+        <span class="cmt"># Flush file buffers to disk:</span><br>
+        <span class="cmd">sync</span><br><br>
+        <span class="cmt"># Reboot system:</span><br>
+        <span class="cmd">reboot</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗜️</div>
+      <h3>unzip</h3>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmd">unzip</span> <span class="arg">filename.zip</span><br><br>
+        <span class="cmt"># List contents without extract:</span><br>
+        <span class="cmd">unzip -l</span> <span class="arg">filename.zip</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔗</div>
+      <h3>SCP — Remote Binary Update</h3>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmd">cd</span> <span class="str">/opt</span><br>
+        <span class="cmd">scp</span> <span class="arg">firstview@192.168.150.16:</span><br>
+        &nbsp;&nbsp;<span class="str">/home/firstview/Desktop/thewave</span> <span class="arg">.</span><br>
+        <span class="cmd">chmod</span> <span class="arg">777</span> <span class="str">/opt/thewave</span><br>
+        <span class="cmd">sync</span><br>
+        <span class="cmd">reboot</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 9: FILE TRANSFER -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s9">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>File Transfer Protocol (Local Network)</h2>
+  </div>
+
+  <div class="diagram-box">
+    <h3>🌐 Local Network File Transfer</h3>
+    <div class="flow">
+      <div class="flow-item blue">PC Client<div class="flow-sub">192.168.0.149</div></div>
+      <div class="flow-arrow">↔</div>
+      <div class="flow-item orange">Router<div class="flow-sub">mediator node</div></div>
+      <div class="flow-arrow">↔</div>
+      <div class="flow-item green">Server (Board)<div class="flow-sub">192.168.0.153</div></div>
+    </div>
+    <br/>
+    <p style="font-size:0.85rem;color:var(--text3);">
+      ⚠️ Both client and server <strong>must be on the same network</strong> for local transfer.<br>
+      Access server from browser: <span class="tag blue">http://192.168.0.153:8080</span> (if web server running)
+    </p>
+  </div>
+
+  <div class="grid2">
+    <div class="info-box">
+      <h4>📁 Local Transfer (Same Network)</h4>
+      <ul>
+        <li>Use <span class="tag blue">SCP</span> for file copy over SSH</li>
+        <li>Use <span class="tag green">rsync</span> for sync/differential transfer</li>
+        <li>Use web server (port 8080) for browser-based upload/download</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h4>☁️ Different Network Transfer</h4>
+      <p>If client and server are on different networks (e.g. different cities), use:</p>
+      <ul>
+        <li><strong>Google Drive</strong> — upload from one side, download from other</li>
+        <li><strong>SFTP</strong> with port forwarding</li>
+        <li><strong>VPN</strong> to create virtual local network</li>
+      </ul>
+      <div class="ok-note"><strong>✅ Correct!</strong> Your Google Drive workaround for cross-network transfer is valid.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SECTION 10: TOOLS -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>Development Tools</h2>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🔬</div>
+      <h3>Valgrind</h3>
+      <p>Detects <strong>memory errors</strong> and <strong>memory leaks</strong> in C/C++ programs.</p>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmd">valgrind</span> <span class="arg">--leak-check=full</span><br>
+        &nbsp;&nbsp;<span class="str">./your_program</span>
+      </div>
+      <div class="ok-note" style="margin-top:6px;"><strong>✅ Correct!</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚒️</div>
+      <h3>BitBake</h3>
+      <p>Yocto's build tool. Reads .bb recipes, resolves dependencies, executes tasks.</p>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmt"># Build a specific recipe:</span><br>
+        <span class="cmd">bitbake</span> <span class="arg">snmp</span><br><br>
+        <span class="cmt"># Build full image:</span><br>
+        <span class="cmd">bitbake</span> <span class="arg">core-image-minimal</span>
+      </div>
+      <div class="ok-note" style="margin-top:6px;"><strong>✅ Correct!</strong></div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔐</div>
+      <h3>CVE-Bin-Tool</h3>
+      <p>Scans binaries/rootfs to find known CVE vulnerabilities in installed packages.</p>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmd">pip3 install</span> <span class="arg">cve-bin-tool</span><br>
+        <span class="cmd">cve-bin-tool</span> <span class="arg">./rootfs/</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🖥️</div>
+      <h3>minicom</h3>
+      <p>Serial terminal to communicate with board over UART. Used to see boot logs and enter U-Boot.</p>
+      <div class="code-block" style="margin-top:10px;">
+        <span class="cmd">sudo minicom</span> <span class="arg">-D /dev/ttyUSB0</span><br>
+        <span class="arg">-b 115200</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>Flash Magic</h3>
+      <p>GUI application used to flash .hex/.bin files to microcontrollers via serial port (UART). Common with NXP/TI boards.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📡</div>
+      <h3>SNMP (Net-SNMP)</h3>
+      <p>Network monitoring protocol. Used to monitor device status, memory, CPU over the network. Your notes about building snmp via Yocto (.bb) are correct.</p>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:16px;">
+    <h4>🐚 bash vs sh — What's the difference?</h4>
+    <table>
+      <thead><tr><th>Shell</th><th>Full Name</th><th>Features</th><th>Script header</th></tr></thead>
+      <tbody>
+        <tr><td>sh</td><td>Bourne Shell</td><td>POSIX standard, basic</td><td>#!/bin/sh</td></tr>
+        <tr><td>bash</td><td>Bourne Again Shell</td><td>sh + arrays, [[ ]], process sub</td><td>#!/bin/bash</td></tr>
+      </tbody>
+    </table>
+    <div class="ok-note" style="margin-top:8px;"><strong>✅ Your question "what is bash / sh" is good!</strong> bash is the superset — always prefer bash for complex scripts.</div>
+  </div>
+
+  <!-- EEPROM -->
+  <div class="info-box" style="margin-top:16px;">
+    <h4>💾 EEPROM on Board Side</h4>
+    <div class="grid2">
+      <div>
+        <p><strong>EEPROM</strong> (Electrically Erasable Programmable Read-Only Memory):</p>
+        <ul>
+          <li>Small, non-volatile memory on board</li>
+          <li>Stores board-specific settings (MAC address, serial number, calibration)</li>
+          <li>Can be read <em>and</em> written (unlike ROM)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="code-block">
+          <span class="cmt"># Read EEPROM:</span><br>
+          <span class="cmd">cat</span> <span class="str">/sys/bus/i2c/devices/1-0050/eeprom</span><br><br>
+          <span class="cmt"># or use i2c-tools:</span><br>
+          <span class="cmd">i2cdump</span> <span class="arg">-y 1 0x50</span>
+        </div>
+      </div>
+    </div>
+    <div class="ok-note"><strong>✅ Correct:</strong> EEPROM is read-only for the OS by default but can be written during provisioning.</div>
+  </div>
+</div>
+
+<!-- CORRECTIONS SUMMARY -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--accent3);">!</div>
+    <h2>Corrections Summary</h2>
+  </div>
+  <table>
+    <thead><tr><th>Page</th><th>Your Note</th><th>Correction / Addition</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Pg 1</td>
+        <td>MLO = Memory Loader (memory loady)</td>
+        <td style="color:var(--accent2);">✅ Correct. MLO = Memory LOader (also called X-Loader on TI platforms)</td>
+      </tr>
+      <tr>
+        <td>Pg 2</td>
+        <td>4 images = MLO, U-Boot, Kernel, RootFS</td>
+        <td style="color:var(--accent2);">✅ Correct! These are the 4 main images in embedded Linux.</td>
+      </tr>
+      <tr>
+        <td>Pg 3</td>
+        <td>Serial boot takes more time</td>
+        <td style="color:var(--accent2);">✅ Correct. UART/serial is slowest (~115200 baud). SD is much faster.</td>
+      </tr>
+      <tr>
+        <td>Pg 5</td>
+        <td>env variable 0 = OS1, 1 = OS2</td>
+        <td style="color:var(--accent2);">✅ Correct! This is exactly how U-Boot boot selection environment variables work.</td>
+      </tr>
+      <tr>
+        <td>Pg 7</td>
+        <td>"Yocto 3.1m" (3.1 with milestone)</td>
+        <td style="color:var(--accent5);">⚠️ Minor: Yocto 3.1 is codenamed <strong>"Dunfell"</strong> (LTS). Use codename in references.</td>
+      </tr>
+      <tr>
+        <td>Pg 8</td>
+        <td>Old Python 3.8 → CVE issue → Python 3.15 supported</td>
+        <td style="color:var(--accent3);">❗ Note: Python 3.15 doesn't exist yet (as of 2025). Latest stable is <strong>3.13</strong>. Likely meant 3.15 as a future version note or it was 3.13/3.12.</td>
+      </tr>
+      <tr>
+        <td>Pg 9</td>
+        <td>CVE-80552434 (example)</td>
+        <td style="color:var(--accent5);">⚠️ CVE format is CVE-YEAR-NUMBER, e.g. <strong>CVE-2023-52434</strong>. The year comes first.</td>
+      </tr>
+      <tr>
+        <td>Pg 12</td>
+        <td>FitImage = am437.dtb + ZImage</td>
+        <td style="color:var(--accent2);">✅ Correct! FIT (Flattened Image Tree) bundles kernel + DTB + optional ramdisk into one .itb file.</td>
+      </tr>
+      <tr>
+        <td>Pg 13</td>
+        <td>while(1) { } vs while(1);</td>
+        <td style="color:var(--accent2);">✅ Correct distinction! while(1){} loops forever executing block; while(1); is an infinite tight loop with no body.</td>
+      </tr>
+      <tr>
+        <td>Pg 18</td>
+        <td>password: Z$1006 2013</td>
+        <td style="color:var(--accent3);">❗ Keep passwords out of notes/documents for security.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+
+<footer>
+  <span>📘 Embedded Linux Notes — Zumi · Corrected &amp; Enhanced</span>
+  <span>AM437x · Yocto · U-Boot · CVE · OTA Updates</span>
+</footer>
+
+</body>
+</html>

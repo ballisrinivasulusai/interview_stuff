@@ -1,0 +1,46 @@
+configeration regading asking sensor data to my agent pc
+
+
+### 🖥️ On the Agent PC (192.168.0.153)
+
+1. **Check that SNMP agent is running**
+
+   sudo systemctl status snmpd
+   sudo nano /etc/snmp/snmpd.conf
+ 
+
+   Add (or modify) these lines:
+
+   rocommunity public 192.168.0.143
+   sysLocation  "Server Room"
+   sysContact   "Admin <admin@example.com>"
+   sysName      "Agent-PC"
+  
+
+   sudo systemctl restart snmpd
+   
+   sudo netstat -tulnp | grep 161
+   
+
+   → Should show `udp 0.0.0.0:161` (SNMP port)
+
+### 💻 On the Manager PC (192.168.0.143)
+
+
+   snmpget -v2c -c public 192.168.0.153 sysName.0
+   
+
+   ✅ Expected output:
+   SNMPv2-MIB::sysName.0 = STRING: Agent-PC
+   ```
+
+   snmpwalk -v2c -c public 192.168.0.153 system
+   snmpwalk -v2c -c public 192.168.0.153 lmSensorsMIB
+ 
+   snmpwalk -v2c -c public 192.168.0.153 UCD-SNMP-MIB::ucdavis
+### 🧠 Result
+
+* The **manager (143)** sends SNMP requests (like asking for temperature/fan data).
+* The **agent (153)** responds with system info and sensor data.
+* This confirms your **SNMP monitoring network** works properly. ✅
+

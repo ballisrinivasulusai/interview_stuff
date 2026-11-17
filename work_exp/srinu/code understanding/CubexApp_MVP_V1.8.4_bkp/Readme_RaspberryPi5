@@ -1,0 +1,67 @@
+#Setting Up CubexApp on RaspberryPi5 
+
+#Prerequisites
+
+    - Ensure you have Python installed.
+
+    - Install necessary build tools if required.
+
+# Steps to Set Up the Environment
+
+# 1. Replace /path/to/dir with your actual path
+
+    sudo chown -R $USER:$USER /home/vochealth/CUBE-X/CubexLatest/CubexApp
+
+# 2. Navigate to the CubexApp Directory
+    
+     cd /path/to/CubexApp
+
+
+# 3. Create a Virtual Environment
+
+    # If a virtual environment already exists, remove it first (if any issues faced on venv):
+
+    rm -rf venv
+
+    # Create a new virtual environment:
+
+    python3 -m venv --system-site-packages venv
+
+# 4. Activate the Virtual Environment
+
+    source venv/bin/activate
+
+# 5. Deactivate the Virtual Environment (if needed)
+
+    deactivate
+
+# 5. Install Dependencies
+
+    # PyQt5
+    sudo apt install python3-pyqt5 -y
+
+    # other dependencies
+    pip install -r requirements.txt
+
+# Running the Application
+
+    python app.py
+
+# Building the Application
+
+#1.Grant execute permission to the build script:
+
+    chmod +x build_linux.sh
+
+# 2. Run the build script:
+
+    ./build_linux.sh
+
+
+# 3. After completion, the .deb will be located in the CubexApp/dist folder.    
+
+# App Credentials
+
+   Username : admin / testtech
+
+   Password : 123456 (hardcoded in Login_Screen.py)

@@ -1,0 +1,15 @@
+pyinstaller
+matplotlib
+pandas
+openpyxl
+thrift
+paramiko
+tinkerforge
+sensirion-uart-sfx6xxx
+sensirion-shdlc-sfc5xxx
+pyqtgraph
+psutil
+scp
+paramiko
+scikit-learn
+ping3

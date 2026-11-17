@@ -1,0 +1,30 @@
+
+# 1. Navigate to the local directory where you want to download the project
+cd ~/OneDrive/Documents/srinu_16
+
+# 2. Download (clone) the existing GitHub repository to your computer
+git clone https://github.com/ballisrinivasulusai/interview_stuff.git
+
+# 3. Enter the downloaded project directory
+cd interview_stuff
+
+# 4. Check the current Git branch
+git branch
+
+# 5. Create a new branch named future and switch to it
+git switch -c future
+
+# 6. Check the current branch (future should be active)
+git branch
+
+# 7. Check project files and modified changes
+git status
+
+# 8. Add all new and modified files to the staging area
+git add .
+
+# 9. Commit the staged changes with a meaningful message
+git commit -m "Added new code in future branch"
+
+# 10. Push the future branch to GitHub and set upstream tracking
+git push -u origin future
